@@ -212,7 +212,7 @@ char	*check_name_com(char *line)
 	char *result;
 
 	i = 0;
-	// //printf("%c_sd_s___", line[i]);
+	// printf("%c_sd_s___\n", line[i]);
 	while (line[i] == ' ' && line[i] == '\t')
 	{
 		i++;
@@ -220,9 +220,9 @@ char	*check_name_com(char *line)
 	end = i;
 	i = 0;
 	j = i;
-	while (line[j] != ' ' && line[j] != '\t')
+	while (line[j] != ' ' && line[j] != '\t' && line[j] != '\0' && line[j] != COMMENT_CHAR)
 		j++;
-	//printf("%c_________________________\n", line[end]);
+	// printf("%c________!!!!_________________\n", line[end]);
 	while (ft_strncmp(&line[end], g_op[i].name, j - end) != 0 && i != 16)
 	{
 		i++;
@@ -248,22 +248,29 @@ void	init_array(t_champ *champ)
 	
 	while (i != 250)
 	{
+		champ->labels[i].names = NULL;
 		champ->labels[i].arg_1 = 0;
 		champ->labels[i].arg_2 = 0;
 		champ->labels[i].arg_3 = 0;
 		while (j != 256)
 		{
-			champ->labels[i].name[j] = '\0';
+			champ->labels[i].l_name_1[j] = '\0';
+			champ->labels[i].l_name_2[j] = '\0';
+			champ->labels[i].l_name_3[j] = '\0';
 			j++;
 		}
 		j = 0;
 		while (j != 6)
 		{
 			champ->labels[i].cmd_name[j] = '\0';
+			j++;
 		}
 		champ->labels[i].is_label = 0;
 		champ->labels[i].cmd_type = 0;
-		champ->labels[i].range = 0;
+		champ->labels[i].range_1 = 0;
+		champ->labels[i].range_2 = 0;
+		champ->labels[i].range_3 = 0;
+		champ->labels[i].arg_now = 0;
 		i++;
 	}
 }
@@ -271,11 +278,39 @@ void	init_array(t_champ *champ)
 void	increase_array(t_champ *champ)
 {
 	int i;
+	int j;
 
-	i = 0;
-	if ((champ->l_size + 1) % 50 == 0)
+	if ((champ->l_size + 1) % 250 == 0)
 	{
-		champ->labels = realloc(champ->labels, champ->l_size + 51);
+		champ->labels = realloc(champ->labels, champ->l_size + 251);
+		i = champ->l_size + 1;
+		champ->labels[i].names = NULL;
+		while (i != 250 + champ->l_size)
+		{
+			champ->labels[i].arg_1 = 0;
+			champ->labels[i].arg_2 = 0;
+			champ->labels[i].arg_3 = 0;
+			while (j != 256)
+			{
+				// champ->labels[i].name[j] = '\0';
+				champ->labels[i].l_name_1[j] = '\0';
+				champ->labels[i].l_name_2[j] = '\0';
+				champ->labels[i].l_name_3[j] = '\0';
+				j++;
+			}
+			j = 0;
+			while (j != 6)
+			{
+				champ->labels[i].cmd_name[j] = '\0';
+			}
+			champ->labels[i].is_label = 0;
+			champ->labels[i].cmd_type = 0;
+			champ->labels[i].range_1 = 0;
+			champ->labels[i].range_2 = 0;
+			champ->labels[i].range_3 = 0;
+			champ->labels[i].arg_now = 0;
+			i++;
+		}
 	}
 	champ->l_size++;
 }
@@ -296,34 +331,96 @@ int		char_in_label(char el)
 	return (0);
 }
 
-void	add_range(t_champ *champ)
+// void	add_range(t_champ *champ)
+// {
+// 	int i;
+// 	int sum;
+// 	int copy;
+
+// 	i = 0;
+// 	sum = 0;
+// 	copy = champ->new_com;
+// 	while (copy != champ->l_size)
+// 	{
+// 		sum += champ->labels[copy].range;
+// 		copy++;
+// 	}
+// 	copy = champ->new_com;
+// 	while (champ->new_com != champ->l_size)
+// 	{
+// 		champ->labels[champ->new_com].range = sum;
+// 		champ->new_com++;
+// 	}
+// 	while (i != copy)
+// 	{
+// 		champ->labels[i].range += champ->labels[copy].range;
+// 		i++;
+// 	}
+// }
+
+int		ft_contains(char *str, t_label label)
+{
+	t_l *tmp;
+
+	tmp = label.names;
+	while (tmp != NULL)
+	{
+		if (ft_strcmp(tmp->name, str) == 0)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void	find_label(t_champ *champ)
 {
 	int i;
+	char *str;
 	int sum;
-	int copy;
 
-	i = 0;
 	sum = 0;
-	copy = champ->new_com;
-	while (copy != champ->l_size)
+	if (champ->labels[champ->l_size].arg_now == 1)
 	{
-		sum += champ->labels[copy].range;
-		copy++;
+		str = champ->labels[champ->l_size].l_name_1;
 	}
-	copy = champ->new_com;
-	while (champ->new_com != champ->l_size)
+	else if (champ->labels[champ->l_size].arg_now == 2)
 	{
-		champ->labels[champ->new_com].range = sum;
-		champ->new_com++;
+		str = champ->labels[champ->l_size].l_name_2;
 	}
-	while (i != copy)
+	else if (champ->labels[champ->l_size].arg_now == 3)
 	{
-		champ->labels[i].range += champ->labels[copy].range;
+		str = champ->labels[champ->l_size].l_name_3;
+	}
+	i = 0;
+	while (i != champ->l_size)
+	{
+		if (champ->labels[i].is_label == 1 && ft_contains(str, champ->labels[i]) /*ft_strcmp(str, champ->labels[i].name) == 0*/)
+		{
+			while (i != champ ->l_size)
+			{
+				sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
+				champ->labels[i].cmd_type;
+				i++;
+			}
+			break ;
+		}
 		i++;
+	}
+	if (champ->labels[champ->l_size].arg_now == 1)
+	{
+		champ->labels[champ->l_size].range_1 = sum;
+	}
+	else if (champ->labels[champ->l_size].arg_now == 2)
+	{
+		champ->labels[champ->l_size].range_2 = sum;
+	}
+	else if (champ->labels[champ->l_size].arg_now == 3)
+	{
+		champ->labels[champ->l_size].range_3 = sum;
 	}
 }
 
-int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
+int	switch_args(char *line, int count_arg, t_champ *champ)
 {
 	int i;
 	int j;
@@ -333,14 +430,19 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 	j = 0;
 	// init_array(champ);
 	i = 0;
-	while (ft_strcmp(g_op[k].name, name_com) != 0)
+	while (ft_strcmp(g_op[k].name, champ->labels[champ->l_size].cmd_name) != 0)
 	{
 		k++;
 	}
 	//increase_array(champ); // add____`
 	if (line[i] == 'r')
 	{
-		champ->labels[champ->l_size].range++; //add
+		if (g_op[k].args_num - count_arg + 1 == 1)
+			champ->labels[champ->l_size].arg_1++; //add
+		else if (g_op[k].args_num - count_arg + 1 == 2)
+			champ->labels[champ->l_size].arg_2++;
+		else if (g_op[k].args_num - count_arg + 1 == 3)
+			champ->labels[champ->l_size].arg_3++;
 		i++;
 		while (line[i] >= '0' && line[i] <= '9')
 		{
@@ -354,7 +456,12 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 	}
 	else if (line[i] == DIRECT_CHAR)
 	{
-		champ->labels[champ->l_size].range += g_op[k].t_dir_size;
+		if (g_op[k].args_num - count_arg + 1 == 1)
+			champ->labels[champ->l_size].arg_1 += g_op[k].t_dir_size; //add
+		else if (g_op[k].args_num - count_arg + 1 == 2)
+			champ->labels[champ->l_size].arg_2 += g_op[k].t_dir_size;
+		else if (g_op[k].args_num - count_arg + 1 == 3)
+			champ->labels[champ->l_size].arg_3 += g_op[k].t_dir_size;
 		i++;
 		if (line[i] == LABEL_CHAR)
 		{
@@ -362,7 +469,22 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 			while (char_in_label(line[i]))
 			{
 				//printf("ifowhfisdhofhsdoifhsdofhsdofhosdhfosdhfosdhfosd|_________________________________|||||\n");
-				champ->labels[champ->l_size].name[j] = line[i];
+				if (g_op[k].args_num - count_arg + 1 == 1)
+				{
+					champ->labels[champ->l_size].arg_now = 1;
+					champ->labels[champ->l_size].l_name_1[j] = line[i]; //add
+				}
+				else if (g_op[k].args_num - count_arg + 1 == 2)
+				{
+					champ->labels[champ->l_size].arg_now = 2;
+					champ->labels[champ->l_size].l_name_2[j] = line[i];
+				}
+				else if (g_op[k].args_num - count_arg + 1 == 3)
+				{
+					champ->labels[champ->l_size].arg_now = 3;
+					champ->labels[champ->l_size].l_name_3[j] = line[i];
+				}
+				// champ->labels[champ->l_size].l_name_1[j] = line[i];
 				j++;
 				i++;
 			}
@@ -371,17 +493,22 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 				//error не тот символ
 				exit (0);
 			}
-			increase_array(champ);//champ->l_size++;
+
+			find_label(champ); // написать!!!!!!!!
+			
+			//increase_array(champ);//champ->l_size++;
 			 // add____`
 			//add_range(champ);
 		}
-		else if (line[i] >= '0' && line[i] <= '9')
+		else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
 		{
+			if (line[i] == '-')
+				i++;
 			while (line[i] >= '0' && line[i] <= '9')
 			{
 				i++;
 			}
-			if (i == 1)
+			if (line[i - 1] == '-' || i == 1)
 			{
 				// error Невалидный аргумент
 				exit(0);
@@ -390,17 +517,50 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 	}
 	else if (line[i] == '-' || (line[i] >= '0' && line[i] <= '9'))
 	{
-		champ->labels[champ->l_size].range += 2; // add
-		while (line[i] == '-' || (line[i] >= '0' && line[i] <= '9'))
+		if (line[i] == '-')
 			i++;
+		if (g_op[k].args_num - count_arg + 1 == 1)
+			champ->labels[champ->l_size].arg_1 += 2; 
+		else if (g_op[k].args_num - count_arg + 1 == 2)
+			champ->labels[champ->l_size].arg_2 += 2;
+		else if (g_op[k].args_num - count_arg + 1 == 3)
+			champ->labels[champ->l_size].arg_3 += 2;
+
+		while (line[i] >= '0' && line[i] <= '9')
+			i++;
+		if (line[i - 1] == '-' || i == 1)
+		{
+			// error Невалидный аргумент
+			exit(0);
+		}
 	}
 	else if (line[i] == LABEL_CHAR)
 	{
-		champ->labels[champ->l_size].range += 2; // add
+		if (g_op[k].args_num - count_arg + 1 == 1)
+			champ->labels[champ->l_size].arg_1 += 2; 
+		else if (g_op[k].args_num - count_arg + 1 == 2)
+			champ->labels[champ->l_size].arg_2 += 2;
+		else if (g_op[k].args_num - count_arg + 1 == 3)
+			champ->labels[champ->l_size].arg_3 += 2;
+		// champ->labels[champ->l_size].range += 2; // add
 		i++;
 			while (char_in_label(line[i]))
 			{
-				champ->labels[champ->l_size].name[j] = line[i];
+				if (g_op[k].args_num - count_arg + 1 == 1)
+				{
+					champ->labels[champ->l_size].arg_now = 1;
+					champ->labels[champ->l_size].l_name_1[j] = line[i]; //add
+				}
+				else if (g_op[k].args_num - count_arg + 1 == 2)
+				{
+					champ->labels[champ->l_size].arg_now = 2;
+					champ->labels[champ->l_size].l_name_2[j] = line[i];
+				}
+				else if (g_op[k].args_num - count_arg + 1 == 3)
+				{
+					champ->labels[champ->l_size].arg_now = 3;
+					champ->labels[champ->l_size].l_name_3[j] = line[i];
+				}
 				j++;
 				i++;
 			}
@@ -409,19 +569,22 @@ int	switch_args(char *line, int count_arg, t_champ *champ, char *name_com)
 				//error не тот символ
 				exit (0);
 			}
-			increase_array(champ);//champ->l_size++; //add____`
+			
+			find_label(champ);
+			
+			//increase_array(champ);//champ->l_size++; //add____`
 			// add_range(champ);
 	}
 	return (i);
 }
 
-void	convert_command(char *line, char *name_com, t_champ *champ)
+void	convert_command(char *line, t_champ *champ)
 {
 	int i;
 	int count_arg;
 	i = 0;
 //printf("line[i] - %c\n", line[0]);
-	while (ft_strcmp(g_op[i].name, name_com) != 0)
+	while (ft_strcmp(g_op[i].name, champ->labels[champ->l_size].cmd_name) != 0)
 	{
 		i++;
 	}
@@ -429,10 +592,10 @@ void	convert_command(char *line, char *name_com, t_champ *champ)
 	
 	
 	if (g_op[i].args_types_code)
-		champ->labels[champ->l_size].range = 2;
+		champ->labels[champ->l_size].cmd_type = 1;
 	else
 	{
-		champ->labels[champ->l_size].range = 1;
+		champ->labels[champ->l_size].cmd_type = 0;
 	} // fix it esli nado
 	
 
@@ -455,7 +618,7 @@ void	convert_command(char *line, char *name_com, t_champ *champ)
 			}
 			comma = 1;
 			//printf("ya tut %c\n", line[i]);
-			i += switch_args(&line[i], count_arg, champ, name_com);
+			i += switch_args(&line[i], count_arg, champ);
 			//printf("%c --------- %d\n", line[i], comma);
 			count_arg--;
 		}
@@ -478,6 +641,7 @@ void	convert_command(char *line, char *name_com, t_champ *champ)
 				//printf("не все аргументы были найдены");
 				exit(0);
 			}
+			increase_array(champ);
 			return ;
 		}
 	}
@@ -488,25 +652,90 @@ void	convert_command(char *line, char *name_com, t_champ *champ)
 		exit(0);
 	}
 	// champ->l_size++; // add____`
-	add_range(champ);
+	//add_range(champ);
+	increase_array(champ);
 }
 
-int	is_command(char **line, t_champ *champ)
+int	is_command(char *line, t_champ *champ)
 {
 	int i;
 	char *name_com;
 
 	i = 0;
-	while ((*line)[i] == ' ' || (*line)[i] == '\t')
+	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	name_com = check_name_com(&(*line)[i]);
+	//printf("fsdf\n");
+	name_com = check_name_com(&line[i]);
+	//printf("fsdf2\n");
 	if (name_com == NULL)
+	{//printf("fsdf3\n");
+		return (0);
+	}
+	// printf("sdsdsd\n");
+	ft_strcpy(champ->labels[champ->l_size].cmd_name, name_com);
+	// for (int q = 0; q < ft_strlen(name_com); q++) {
+		// champ->labels[champ->l_size].cmd_name[q] = name_com[q];
+	// }
+	//printf("%s _____________________\n", name_com);
+	convert_command(&line[i + ft_strlen(name_com) + 1], champ);
+	return (1);
+}
+
+int		is_label(char *line, t_champ *champ)
+{
+	int i;
+	int len;
+	t_l new;
+
+	i = 0;
+	//printf("HEY\n");
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	len = i;
+	while (line[i] != ' ' && line[i] != '\t' && line[i] != LABEL_CHAR &&\
+	line[i] != '\0' && line[i] != COMMENT_CHAR)
+		i++;
+	if (line[i] == LABEL_CHAR)
+	{
+		if (champ->labels[champ->l_size].names == NULL)
+		{
+			//printf("hey\n");
+			ft_strncpy(new.name, &line[len], i - len);
+			//printf("hey\n");
+			new.next = NULL;
+			champ->labels[champ->l_size].names = &new;
+			champ->labels[champ->l_size].start = &new;
+		}
+		else
+		{
+			ft_strncpy(new.name, &line[len], i - len);
+			new.next = NULL;
+			champ->labels[champ->l_size].names->next = &new;
+			champ->labels[champ->l_size].names = &new;
+		}
+		
+	}
+	else
 	{
 		return (0);
 	}
-	//printf("%s _____________________\n", name_com);
-	convert_command(&(*line)[i + ft_strlen(name_com) + 1], name_com, champ);
-	return (1);
+	i++;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	printf("%c _!_!_\n", line[i]);
+	if (line[i] == '\0'|| line[i] == COMMENT_CHAR)
+		return (1);
+	else if (is_command(&line[i], champ))
+	{
+		return (1);
+	}
+	else
+	{
+		//error
+		printf("если это не команда\n");
+		exit(0);
+	}
+	
 }
 
 void	is_body_valid(int fd, t_champ *champ)
@@ -519,11 +748,17 @@ void	is_body_valid(int fd, t_champ *champ)
 		//printf("%s\n", line);
 		if (is_comment(line))
 			;
-		else if (is_command(&line, champ))
+		else if (is_command(line, champ))
 			;
-		// else if (is_label(&line))
-		//printf("hey\n");
-		// 	;
+		else if (is_label(line, champ))
+			;
+		else
+		{
+			// ERROR nevalidnyi vvod
+			printf("nevalidnyi vvod\n");
+			exit(0);
+		}
+		
 	}
 }
 
@@ -564,12 +799,14 @@ int	main(int argc, char **argv)
 	{
 		is_file_valid(argv[1], &champ);
 	}
-	printf("\n\n\n");
+	// printf("\n\n\n");
 	printf("%s - NAME\n", champ.name);
 	printf("%s - COMMENT\n", champ.comment);
 	for (int i = 0; i < champ.l_size; i++)
 	{
-		printf("%s - LNAME, %d - RANGE\n", champ.labels[i].name, champ.labels[i].range);
+		printf("%s - CMD_NAME, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_2\n", champ.labels[i].cmd_name, \
+						champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
+						champ.labels[i].cmd_type, champ.labels[i].l_name_2);
 	}
 	//printf("fdsafa\n");
 	return (0);

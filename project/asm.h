@@ -66,10 +66,17 @@ typedef char	t_arg_type;
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
+typedef struct s_l
+{
+	char		name[256];
+	struct s_l	*next;
+}				t_l;
+
 typedef struct  s_label
 {
 	int		is_label;
-	char    name[256]; // название метки если это она
+	t_l		*names;
+	t_l		*start; // название метки если это она
 	int		range_1; /*Расстояние до метки*/
 	int		range_2;
 	int		range_3;
@@ -80,7 +87,8 @@ typedef struct  s_label
 	int		arg_3;
 	char	l_name_1[256]; /*Названия метки если какой-либо аргумент является меткой */
 	char	l_name_2[256];
-	char	l_name_3[256]; 		
+	char	l_name_3[256];
+	int 	arg_now; 		
 }               t_label;
 
 typedef struct  s_champ
