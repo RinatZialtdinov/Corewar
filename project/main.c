@@ -41,7 +41,7 @@ void	skip_spaces(int i, char *line)
 		if (line[i] != ' ' || line[i] != '\t')
 		{
 			//error невалидная строка
-			//printf("невалидная строка\n");
+			printf("невалидная строка\n");
 			exit(0);
 		}
 		i++;
@@ -67,7 +67,7 @@ int	is_main_comment(char **line, int fd, t_champ *champ, int mc)
 	if (mc == 1)
 	{
 		//error	два комментария
-		//printf("два комментария\n");
+		printf("два комментария\n");
 		exit(0);
 	}
 	while ((*line)[i] != '"' && (*line)[i] != '\0' && (*line)[i] != COMMENT_CHAR)
@@ -75,7 +75,7 @@ int	is_main_comment(char **line, int fd, t_champ *champ, int mc)
 	if ((*line)[i] != '"')
 	{
 		//error не нашли имя
-		//printf("не нашли имя\n");
+		printf("не нашли имя\n");
 		exit(0);
 	}
 	i++;
@@ -87,7 +87,7 @@ int	is_main_comment(char **line, int fd, t_champ *champ, int mc)
 		if (j > COMMENT_LENGTH)
 		{
 			//error длинное имя
-			//printf("длинное имя\n");
+			printf("длинное имя\n");
 			exit(0);
 		}
 		else if ((*line)[i] == '\0')
@@ -100,7 +100,7 @@ int	is_main_comment(char **line, int fd, t_champ *champ, int mc)
 			else
 			{
 				//error неполный файл или невалидный
-				//printf("неполный файл или невалидный\n");
+				printf("неполный файл или невалидный\n");
 				exit(0);
 			}
 		}
@@ -138,7 +138,7 @@ int	is_name(char **line, int fd, t_champ *champ, int name)
 	if (name)
 	{
 		//error  два имени
-		//printf("два имени\n");
+		printf("два имени\n");
 		exit(0);
 	}
 	i = len_const;
@@ -147,7 +147,7 @@ int	is_name(char **line, int fd, t_champ *champ, int name)
 	if ((*line)[i] != '"')
 	{
 		//error не нашли имя
-		//printf("не нашли имя\n");
+		printf("не нашли имя\n");
 		exit(0);
 	}
 	i++;
@@ -159,7 +159,7 @@ int	is_name(char **line, int fd, t_champ *champ, int name)
 		if (j > PROG_NAME_LENGTH)
 		{
 			//error длинное имя
-			//printf("длинное имя\n");
+			printf("длинное имя\n");
 			exit (0);
 		}
 		else if ((*line)[i] == '\0')
@@ -172,7 +172,7 @@ int	is_name(char **line, int fd, t_champ *champ, int name)
 			else
 			{
 				//error неполный файл или невалидный
-				//printf("неполный файл или невалидный\n");
+				printf("неполный файл или невалидный\n");
 				exit(0);
 			}
 		}
@@ -223,7 +223,7 @@ char	*check_name_com(char *line)
 	while (line[j] != ' ' && line[j] != '\t' && line[j] != '\0' && line[j] != COMMENT_CHAR)
 		j++;
 	// printf("%c________!!!!_________________\n", line[end]);
-	while (ft_strncmp(&line[end], g_op[i].name, j - end) != 0 && i != 16)
+	while (i != 16 && ft_strncmp(&line[end], g_op[i].name, j - end) != 0)
 	{
 		i++;
 	}
@@ -362,7 +362,7 @@ int		ft_contains(char *str, t_label label)
 {
 	t_l *tmp;
 
-	tmp = label.names;
+	tmp = label.start;
 	while (tmp != NULL)
 	{
 		if (ft_strcmp(tmp->name, str) == 0)
@@ -392,13 +392,14 @@ void	find_label(t_champ *champ)
 		str = champ->labels[champ->l_size].l_name_3;
 	}
 	i = 0;
+	printf("%s - STR\n", str);
 	while (i != champ->l_size)
 	{
 		if (champ->labels[i].is_label == 1 && ft_contains(str, champ->labels[i]) /*ft_strcmp(str, champ->labels[i].name) == 0*/)
 		{
-			while (i != champ ->l_size)
+			while (i != champ->l_size)
 			{
-				sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
+				sum -= champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
 				champ->labels[i].cmd_type;
 				i++;
 			}
@@ -491,6 +492,7 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 			{
 				//error не тот символ
+				printf("не тот символ\n");
 				exit (0);
 			}
 
@@ -511,6 +513,7 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			if (line[i - 1] == '-' || i == 1)
 			{
 				// error Невалидный аргумент
+				printf("Невалидный аргумент\n");
 				exit(0);
 			}
 		}
@@ -528,9 +531,10 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 
 		while (line[i] >= '0' && line[i] <= '9')
 			i++;
-		if (line[i - 1] == '-' || i == 1)
+		if (line[i - 1] == '-' && i == 1)
 		{
-			// error Невалидный аргумент
+			// error Невалидный аргумент2
+			printf("Невалидный аргумент2\n");
 			exit(0);
 		}
 	}
@@ -566,7 +570,8 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			}
 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 			{
-				//error не тот символ
+				//error не тот символ2
+				printf("не тот символ2\n");
 				exit (0);
 			}
 			
@@ -608,12 +613,12 @@ void	convert_command(char *line, t_champ *champ)
 	{
 		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-		if (line[i] == 'r' || line[i] == DIRECT_CHAR || line[i] == LABEL_CHAR || (line[i] >= '0' && line[i] <= '9'))
+		if (line[i] == 'r' || line[i] == DIRECT_CHAR || line[i] == '-' || line[i] == LABEL_CHAR || (line[i] >= '0' && line[i] <= '9'))
 		{
 			if (comma == 1)
 			{
 				// error	Нет запятой
-				//printf("Нет запятой");
+				printf("Нет запятой");
 				exit(0);
 			}
 			comma = 1;
@@ -622,18 +627,18 @@ void	convert_command(char *line, t_champ *champ)
 			//printf("%c --------- %d\n", line[i], comma);
 			count_arg--;
 		}
-		if (line[i] == SEPARATOR_CHAR)
+		else if (line[i] == SEPARATOR_CHAR)
 		{
 			if (comma == 0)
 			{
 				// error	Лишняя запятая
-				//printf("Лишняя запятая");
+				printf("Лишняя запятая");
 				exit(0);
 			}
 			comma = 0;
 			i++;
 		}
-		if (line[i] == COMMENT_CHAR)
+		else if (line[i] == COMMENT_CHAR)
 		{
 			if (count_arg != 0)
 			{
@@ -644,11 +649,18 @@ void	convert_command(char *line, t_champ *champ)
 			increase_array(champ);
 			return ;
 		}
+		else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\0')
+		{
+			//error non-valid symbol
+			printf("%s - LINE, %c - SYMBOL non-valid symbol\n", line, line[i]);
+			exit(0);
+		}
+		
 	}
 	if (comma == 0 || count_arg != 0)
 	{
 		// error	Лишняя запятая или не все аргументы были найдены
-				//printf("Лишняя запятая или не все аргументы были найдены");
+		printf("Лишняя запятая или не все аргументы были найдены");
 		exit(0);
 	}
 	// champ->l_size++; // add____`
@@ -685,7 +697,7 @@ int		is_label(char *line, t_champ *champ)
 {
 	int i;
 	int len;
-	t_l new;
+	t_l *new;
 
 	i = 0;
 	//printf("HEY\n");
@@ -697,21 +709,25 @@ int		is_label(char *line, t_champ *champ)
 		i++;
 	if (line[i] == LABEL_CHAR)
 	{
+		champ->labels[champ->l_size].is_label = 1;
 		if (champ->labels[champ->l_size].names == NULL)
 		{
 			//printf("hey\n");
-			ft_strncpy(new.name, &line[len], i - len);
+			new = malloc(sizeof(t_l));
+			ft_strncpy(new->name, &line[len], i - len);
 			//printf("hey\n");
-			new.next = NULL;
-			champ->labels[champ->l_size].names = &new;
-			champ->labels[champ->l_size].start = &new;
+			new->next = NULL;
+			champ->labels[champ->l_size].names = new;
+			//printf("%s - LABEL\n", champ->labels[champ->l_size].names->name);
+			champ->labels[champ->l_size].start = new;
 		}
 		else
 		{
-			ft_strncpy(new.name, &line[len], i - len);
-			new.next = NULL;
-			champ->labels[champ->l_size].names->next = &new;
-			champ->labels[champ->l_size].names = &new;
+			new = malloc(sizeof(t_l));
+			ft_strncpy(new->name, &line[len], i - len);
+			new->next = NULL;
+			champ->labels[champ->l_size].names->next = new;
+			champ->labels[champ->l_size].names = new;
 		}
 		
 	}
@@ -735,7 +751,73 @@ int		is_label(char *line, t_champ *champ)
 		printf("если это не команда\n");
 		exit(0);
 	}
-	
+}
+
+int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg)
+{
+	int i;
+	int sum;
+
+	i = start;
+	sum = 0;
+	while (i < champ->l_size)
+	{
+		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
+				champ->labels[i].cmd_type;
+		if (ft_contains(l_name, champ->labels[i]))
+			break ;
+		i++;
+		if (i == champ->l_size)
+			return (0);
+	}
+	if (arg == 1)
+		champ->labels[start].range_1 = sum;
+	else if (arg == 2)
+		champ->labels[start].range_2 = sum;
+	else if (arg == 3)
+		champ->labels[start].range_3 = sum;
+	return (1);
+}
+
+void	finish_fill_label_range(t_champ *champ)
+{
+	int i;
+
+	i = 0;
+	while (i < champ->l_size)
+	{
+		if (champ->labels[i].l_name_1[0])
+		{
+			if (find_label_after_cmd(champ, champ->labels[i].l_name_1, i, 1))
+				;
+			else
+			{
+				/* else Не нашел метку */
+				exit(0);
+			}
+		}
+		if (champ->labels[i].l_name_2[0])
+		{
+			if (find_label_after_cmd(champ, champ->labels[i].l_name_2, i, 2))
+				;
+			else
+			{
+				/* else Не нашел метку */
+				exit(0);
+			}
+		}
+		if (champ->labels[i].l_name_3[0])
+		{
+			if (find_label_after_cmd(champ, champ->labels[i].l_name_3, i, 3))
+				;
+			else
+			{
+				/* else Не нашел метку */
+				exit(0);
+			}
+		}
+		i++;
+	}
 }
 
 void	is_body_valid(int fd, t_champ *champ)
@@ -758,8 +840,8 @@ void	is_body_valid(int fd, t_champ *champ)
 			printf("nevalidnyi vvod\n");
 			exit(0);
 		}
-		
 	}
+	finish_fill_label_range(champ);
 }
 
 void	is_file_valid(char *name, t_champ *champ)
@@ -799,15 +881,15 @@ int	main(int argc, char **argv)
 	{
 		is_file_valid(argv[1], &champ);
 	}
-	// printf("\n\n\n");
+	printf("\n\n\n");
 	printf("%s - NAME\n", champ.name);
 	printf("%s - COMMENT\n", champ.comment);
 	for (int i = 0; i < champ.l_size; i++)
 	{
-		printf("%s - CMD_NAME, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_2\n", champ.labels[i].cmd_name, \
-						champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
-						champ.labels[i].cmd_type, champ.labels[i].l_name_2);
+		printf("%s - CMD_NAME, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3\n", champ.labels[i].cmd_name, \
+						champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
+						champ.labels[i].cmd_type, champ.labels[i].l_name_1, champ.labels[i].l_name_2, champ.labels[i].range_1, champ.labels[i].range_2, champ.labels[i].range_3);
 	}
-	//printf("fdsafa\n");
+	printf("fdsafa\n");
 	return (0);
 }

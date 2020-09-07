@@ -1,0 +1,12 @@
+f = open("zork.cor", "rb")
+try:
+    byte = f.read(1)
+    # byte = 't'
+    # byte = byte[2:]
+    while byte != "":
+        print(hex(ord(byte))),
+        # Do stuff with byte.
+        byte = f.read(1)
+        # byte = byte[-2:]
+finally:
+    f.close()
