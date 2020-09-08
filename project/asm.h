@@ -81,6 +81,7 @@ typedef struct  s_label
 	int		range_2;
 	int		range_3;
 	char	cmd_name[6]; // название команды
+	int		cmd_code;
 	int		cmd_type; // 1 если больше одного арг. или 0
 	int		arg_1; /*Размер аргумента в кол-ве байт*/
 	int		arg_2;

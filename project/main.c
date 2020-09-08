@@ -204,7 +204,7 @@ void is_header_valid(int fd, t_champ *champ)
 	}
 }
 
-char	*check_name_com(char *line)
+char	*check_name_com(char *line, t_champ *champ)
 {
 	int end;
 	int i;
@@ -230,6 +230,7 @@ char	*check_name_com(char *line)
 	if (i != 16)
 	{
 		result = ft_strsub(line, end, end + (j - end));
+		champ->labels[champ->l_size].cmd_code = g_op[i].code;
 		return (result);
 	}
 	//printf("s\n");
@@ -489,6 +490,9 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 				j++;
 				i++;
 			}
+			champ->labels[champ->l_size].l_name_1[j] = '\0';
+			champ->labels[champ->l_size].l_name_2[j] = '\0';
+			champ->labels[champ->l_size].l_name_3[j] = '\0';
 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 			{
 				//error не тот символ
@@ -568,6 +572,9 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 				j++;
 				i++;
 			}
+			champ->labels[champ->l_size].l_name_1[j] = '\0';
+			champ->labels[champ->l_size].l_name_2[j] = '\0';
+			champ->labels[champ->l_size].l_name_3[j] = '\0';
 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 			{
 				//error не тот символ2
@@ -677,7 +684,7 @@ int	is_command(char *line, t_champ *champ)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	//printf("fsdf\n");
-	name_com = check_name_com(&line[i]);
+	name_com = check_name_com(&line[i], champ);
 	//printf("fsdf2\n");
 	if (name_com == NULL)
 	{//printf("fsdf3\n");
@@ -689,6 +696,7 @@ int	is_command(char *line, t_champ *champ)
 		// champ->labels[champ->l_size].cmd_name[q] = name_com[q];
 	// }
 	//printf("%s _____________________\n", name_com);
+	free(name_com);
 	convert_command(&line[i + ft_strlen(name_com) + 1], champ);
 	return (1);
 }
@@ -715,6 +723,8 @@ int		is_label(char *line, t_champ *champ)
 			//printf("hey\n");
 			new = malloc(sizeof(t_l));
 			ft_strncpy(new->name, &line[len], i - len);
+			new->name[i - len] = '\0';
+			// printf("%s - name\n", new->name);
 			//printf("hey\n");
 			new->next = NULL;
 			champ->labels[champ->l_size].names = new;
@@ -725,6 +735,7 @@ int		is_label(char *line, t_champ *champ)
 		{
 			new = malloc(sizeof(t_l));
 			ft_strncpy(new->name, &line[len], i - len);
+			new->name[i - len] = '\0';
 			new->next = NULL;
 			champ->labels[champ->l_size].names->next = new;
 			champ->labels[champ->l_size].names = new;
@@ -786,33 +797,36 @@ void	finish_fill_label_range(t_champ *champ)
 	i = 0;
 	while (i < champ->l_size)
 	{
-		if (champ->labels[i].l_name_1[0])
+		if (champ->labels[i].l_name_1[0] && champ->labels[i].range_1 == 0)
 		{
 			if (find_label_after_cmd(champ, champ->labels[i].l_name_1, i, 1))
 				;
 			else
 			{
 				/* else Не нашел метку */
+				printf("Не нашел метку1\n");
 				exit(0);
 			}
 		}
-		if (champ->labels[i].l_name_2[0])
+		if (champ->labels[i].l_name_2[0] && champ->labels[i].range_2 == 0)
 		{
 			if (find_label_after_cmd(champ, champ->labels[i].l_name_2, i, 2))
 				;
 			else
 			{
 				/* else Не нашел метку */
+				printf("Не нашел метку2 %s\n", champ->labels[i].l_name_2);
 				exit(0);
 			}
 		}
-		if (champ->labels[i].l_name_3[0])
+		if (champ->labels[i].l_name_3[0] && champ->labels[i].range_3 == 0)
 		{
 			if (find_label_after_cmd(champ, champ->labels[i].l_name_3, i, 3))
 				;
 			else
 			{
 				/* else Не нашел метку */
+				printf("Не нашел метку3\n");
 				exit(0);
 			}
 		}
@@ -840,6 +854,7 @@ void	is_body_valid(int fd, t_champ *champ)
 			printf("nevalidnyi vvod\n");
 			exit(0);
 		}
+		free(line);
 	}
 	finish_fill_label_range(champ);
 }
@@ -865,11 +880,72 @@ void	is_file_valid(char *name, t_champ *champ)
 		//printf("неправильное название файла\n");
 		exit (0);
 	}
+	close(fd);
+}
+
+void	free_label(t_label label)
+{
+	t_l *to_del;
+	t_l *tmp;
+
+	to_del = label.start;
+	while (to_del)
+	{
+		tmp = to_del->next;
+		free(to_del);
+		to_del = tmp;
+	}
+}
+
+void	free_all(t_champ champ)
+{
+	int i;
+
+	i = 0;
+	while (i < champ.l_size)
+	{
+		free_label(champ.labels[i]);
+		i++;
+	}
+	free(champ.labels);
+}
+
+char	*change_extension(char *filename, char *old, char *new)
+{
+	char	*basename;
+
+	basename = ft_strsub(filename, 0, ft_strlen(filename) - ft_strlen(old));
+	if (!basename)
+	{
+		//error
+		exit(0);
+	}
+	if (!(filename = ft_strjoin(basename, new)))
+	{
+		//error
+		exit(0);
+	}
+	ft_strdel(&basename);
+	return (filename);
+}
+
+int		count_code_size(t_champ *champ)
+{
+
+	return 0;
+}
+
+void	to_bin_code(t_champ *champ)
+{
+	champ->code_size = count_code_size(champ);
+
+	champ->exec_code = malloc(sizeof(char) * (16 + PROG_NAME_LENGTH + COMMENT_LENGTH + champ->code_size));
 }
 
 int	main(int argc, char **argv)
 {
 	t_champ champ;
+	int fd;
 
 	init_array(&champ);
 	if (argc != 2)
@@ -881,15 +957,19 @@ int	main(int argc, char **argv)
 	{
 		is_file_valid(argv[1], &champ);
 	}
+	//to_bin_code(&champ);
+	char *file_name = change_extension(argv[1], ".s", ".cor");
+	fd = open(file_name, O_CREAT|O_WRONLY|O_TRUNC, 0777);
 	printf("\n\n\n");
 	printf("%s - NAME\n", champ.name);
 	printf("%s - COMMENT\n", champ.comment);
 	for (int i = 0; i < champ.l_size; i++)
 	{
-		printf("%s - CMD_NAME, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3\n", champ.labels[i].cmd_name, \
-						champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
+		printf("%s - CMD_NAME, %x - CMD_CODE, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3\n", champ.labels[i].cmd_name, \
+						champ.labels[i].cmd_code ,champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
 						champ.labels[i].cmd_type, champ.labels[i].l_name_1, champ.labels[i].l_name_2, champ.labels[i].range_1, champ.labels[i].range_2, champ.labels[i].range_3);
 	}
 	printf("fdsafa\n");
+	free_all(champ);
 	return (0);
 }
