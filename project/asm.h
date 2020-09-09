@@ -55,7 +55,7 @@ typedef char	t_arg_type;
 
 #define T_REG					1
 #define T_DIR					2
-#define T_IND					4
+#define T_IND					3
 #define T_LAB					8
 
 /*
@@ -77,11 +77,11 @@ typedef struct  s_label
 	int		is_label;
 	t_l		*names;
 	t_l		*start; // название метки если это она
-	int		range_1; /*Расстояние до метки*/
+	int		range_1; /*Расстояние до метки или значение аргумента*/
 	int		range_2;
 	int		range_3;
 	char	cmd_name[6]; // название команды
-	int		cmd_code;
+	int		cmd_code; // код команды в 16 системе
 	int		cmd_type; // 1 если больше одного арг. или 0
 	int		arg_1; /*Размер аргумента в кол-ве байт*/
 	int		arg_2;
@@ -89,6 +89,9 @@ typedef struct  s_label
 	char	l_name_1[256]; /*Названия метки если какой-либо аргумент является меткой */
 	char	l_name_2[256];
 	char	l_name_3[256];
+	int		type_1; // тип аргумента (1 - T_REG, 2 - T_DIR, 3 - T_IND)
+	int		type_2;
+	int		type_3;
 	int 	arg_now; 		
 }               t_label;
 
@@ -97,8 +100,8 @@ typedef struct  s_champ
 	char    name[PROG_NAME_LENGTH + 1];
 	char    comment[COMMENT_LENGTH + 1];
 	int     code_size;
-	char    *exec_code;
-
+	unsigned char    *exec_code;
+	int		ind_wr;
 
 	int		new_com;
 	int		l_size;

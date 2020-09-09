@@ -12,7 +12,6 @@
 
 #include "asm_op.h"
 #include "asm.h"
-#include "op.h"
 #include <stdlib.h>
 #include "libft/libft.h"
 #include <fcntl.h>
@@ -246,13 +245,15 @@ void	init_array(t_champ *champ)
 	i = 0;
 	champ->l_size = 0;
 	champ->labels = malloc(sizeof(t_label) * 250);
-	
 	while (i != 250)
 	{
 		champ->labels[i].names = NULL;
 		champ->labels[i].arg_1 = 0;
 		champ->labels[i].arg_2 = 0;
 		champ->labels[i].arg_3 = 0;
+		champ->labels[i].type_1 = 0;
+		champ->labels[i].type_2 = 0;
+		champ->labels[i].type_3 = 0;
 		while (j != 256)
 		{
 			champ->labels[i].l_name_1[j] = '\0';
@@ -393,7 +394,7 @@ void	find_label(t_champ *champ)
 		str = champ->labels[champ->l_size].l_name_3;
 	}
 	i = 0;
-	printf("%s - STR\n", str);
+	// printf("%s - STR\n", str);
 	while (i != champ->l_size)
 	{
 		if (champ->labels[i].is_label == 1 && ft_contains(str, champ->labels[i]) /*ft_strcmp(str, champ->labels[i].name) == 0*/)
@@ -422,6 +423,40 @@ void	find_label(t_champ *champ)
 	}
 }
 
+int	get_reg_arg_val(t_champ *champ, char *line, int *i)
+{
+	// int i;
+
+	// i = 1;
+	(*i)++;
+	while (line[*i] >= '0' && line[*i] <= '9')
+		(*i)++;
+	if (ft_atoi(&line[1]) > REG_NUMBER || *i == 1)
+	{
+		// error Невалидный аргумент
+		exit(0);
+	}
+	return (ft_atoi(&line[1]));
+}
+
+int	get_dir_ind_arg_val(t_champ *champ, char *line, int *i)
+{
+	int start;
+
+	start = *i;
+	if (line[*i] == '-')
+		(*i)++;
+	while (line[*i] >= '0' && line[*i] <= '9')
+		(*i)++;
+	if (line[*i - 1] == '-' && *i == 1)
+	{
+		// error Невалидный аргумент2
+		printf("Невалидный аргумент2\n");
+		exit(0);
+	}
+	return (ft_atoi(&line[start]));
+}
+
 int	switch_args(char *line, int count_arg, t_champ *champ)
 {
 	int i;
@@ -440,30 +475,42 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 	if (line[i] == 'r')
 	{
 		if (g_op[k].args_num - count_arg + 1 == 1)
-			champ->labels[champ->l_size].arg_1++; //add
+		{
+			champ->labels[champ->l_size].arg_1++;
+			champ->labels[champ->l_size].type_1 = 1; //add
+			champ->labels[champ->l_size].range_1 = get_reg_arg_val(champ, line, &i);
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 2)
+		{
 			champ->labels[champ->l_size].arg_2++;
+			champ->labels[champ->l_size].type_2 = 1;
+			champ->labels[champ->l_size].range_2 = get_reg_arg_val(champ, line, &i);
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 3)
+		{
 			champ->labels[champ->l_size].arg_3++;
-		i++;
-		while (line[i] >= '0' && line[i] <= '9')
-		{
-			i++;
+			champ->labels[champ->l_size].type_3 = 1;
+			champ->labels[champ->l_size].range_3 = get_reg_arg_val(champ, line, &i);
 		}
-		if (ft_atoi(&line[1]) > REG_NUMBER || i == 1)
-		{
-			// error Невалидный аргумент
-			exit(0);
-		}
+		
 	}
 	else if (line[i] == DIRECT_CHAR)
 	{
 		if (g_op[k].args_num - count_arg + 1 == 1)
+		{
 			champ->labels[champ->l_size].arg_1 += g_op[k].t_dir_size; //add
+			champ->labels[champ->l_size].type_1 = 2;
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 2)
+		{
 			champ->labels[champ->l_size].arg_2 += g_op[k].t_dir_size;
+			champ->labels[champ->l_size].type_2 = 2;
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 3)
+		{
 			champ->labels[champ->l_size].arg_3 += g_op[k].t_dir_size;
+			champ->labels[champ->l_size].type_3 = 2;
+		}
 		i++;
 		if (line[i] == LABEL_CHAR)
 		{
@@ -508,48 +555,74 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 		}
 		else if ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
 		{
-			if (line[i] == '-')
-				i++;
-			while (line[i] >= '0' && line[i] <= '9')
-			{
-				i++;
-			}
-			if (line[i - 1] == '-' || i == 1)
-			{
-				// error Невалидный аргумент
-				printf("Невалидный аргумент\n");
-				exit(0);
-			}
+			// if (line[i] == '-')
+			// 	i++;
+			// while (line[i] >= '0' && line[i] <= '9')
+			// {
+			// 	i++;
+			// }
+			// if (line[i - 1] == '-' || i == 1)
+			// {
+			// 	// error Невалидный аргумент
+			// 	printf("Невалидный аргумент\n");
+			// 	exit(0);
+			// }
+			if (g_op[k].args_num - count_arg + 1 == 1)
+				champ->labels[champ->l_size].range_1 = get_dir_ind_arg_val(champ, line, &i);
+			else if (g_op[k].args_num - count_arg + 1 == 2)
+				champ->labels[champ->l_size].range_2 = get_dir_ind_arg_val(champ, line, &i);
+			else if (g_op[k].args_num - count_arg + 1 == 3)
+				champ->labels[champ->l_size].range_3 = get_dir_ind_arg_val(champ, line, &i);
 		}
 	}
 	else if (line[i] == '-' || (line[i] >= '0' && line[i] <= '9'))
 	{
-		if (line[i] == '-')
-			i++;
 		if (g_op[k].args_num - count_arg + 1 == 1)
-			champ->labels[champ->l_size].arg_1 += 2; 
-		else if (g_op[k].args_num - count_arg + 1 == 2)
-			champ->labels[champ->l_size].arg_2 += 2;
-		else if (g_op[k].args_num - count_arg + 1 == 3)
-			champ->labels[champ->l_size].arg_3 += 2;
-
-		while (line[i] >= '0' && line[i] <= '9')
-			i++;
-		if (line[i - 1] == '-' && i == 1)
 		{
-			// error Невалидный аргумент2
-			printf("Невалидный аргумент2\n");
-			exit(0);
+			champ->labels[champ->l_size].arg_1 += 2;
+			champ->labels[champ->l_size].range_1 = get_dir_ind_arg_val(champ, line, &i);
+			champ->labels[champ->l_size].type_1 = 3;
+		} 
+		else if (g_op[k].args_num - count_arg + 1 == 2)
+		{
+			champ->labels[champ->l_size].arg_2 += 2;
+			champ->labels[champ->l_size].range_2 = get_dir_ind_arg_val(champ, line, &i);
+			champ->labels[champ->l_size].type_2 = 3;
 		}
+		else if (g_op[k].args_num - count_arg + 1 == 3)
+		{
+			champ->labels[champ->l_size].arg_3 += 2;
+			champ->labels[champ->l_size].range_3 = get_dir_ind_arg_val(champ, line, &i);
+			champ->labels[champ->l_size].type_3 = 3;
+		}
+		// if (line[i] == '-')
+		// 	i++;
+		// while (line[i] >= '0' && line[i] <= '9')
+		// 	i++;
+		// if (line[i - 1] == '-' && i == 1)
+		// {
+		// 	// error Невалидный аргумент2
+		// 	printf("Невалидный аргумент2\n");
+		// 	exit(0);
+		// }
 	}
 	else if (line[i] == LABEL_CHAR)
 	{
 		if (g_op[k].args_num - count_arg + 1 == 1)
-			champ->labels[champ->l_size].arg_1 += 2; 
+		{
+			champ->labels[champ->l_size].arg_1 += 2;
+			champ->labels[champ->l_size].type_1 = 3; 
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 2)
+		{
 			champ->labels[champ->l_size].arg_2 += 2;
+			champ->labels[champ->l_size].type_2 = 3;
+		}
 		else if (g_op[k].args_num - count_arg + 1 == 3)
+		{
 			champ->labels[champ->l_size].arg_3 += 2;
+			champ->labels[champ->l_size].type_3 = 3;
+		}
 		// champ->labels[champ->l_size].range += 2; // add
 		i++;
 			while (char_in_label(line[i]))
@@ -749,7 +822,7 @@ int		is_label(char *line, t_champ *champ)
 	i++;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	printf("%c _!_!_\n", line[i]);
+	// printf("%c _!_!_\n", line[i]);
 	if (line[i] == '\0'|| line[i] == COMMENT_CHAR)
 		return (1);
 	else if (is_command(&line[i], champ))
@@ -773,10 +846,10 @@ int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg)
 	sum = 0;
 	while (i < champ->l_size)
 	{
-		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
-				champ->labels[i].cmd_type;
 		if (ft_contains(l_name, champ->labels[i]))
 			break ;
+		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
+				champ->labels[i].cmd_type;
 		i++;
 		if (i == champ->l_size)
 			return (0);
@@ -788,6 +861,38 @@ int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg)
 	else if (arg == 3)
 		champ->labels[start].range_3 = sum;
 	return (1);
+}
+
+void	sum_range(t_champ *champ, char *l_name, int arg, int end)
+{
+	int i;
+	int sum;
+	int k;
+
+	k = end;
+	sum = 0;
+	i = end;
+	while (i != champ->l_size)
+	{
+		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + 1 +\
+				champ->labels[i].cmd_type;
+		i++;
+	}
+	if (arg == 1)
+	{
+		champ->labels[k].range_1 = sum;
+		// printf("SUM - %d\n", sum);
+	}
+	else if (arg == 2)
+	{
+		champ->labels[k].range_2 = sum;
+		// printf("SUM - %d\n", sum);
+	}
+	else if (arg == 3)
+	{
+		champ->labels[k].range_3 = sum;
+		// printf("SUM - %d\n", sum);
+	}
 }
 
 void	finish_fill_label_range(t_champ *champ)
@@ -804,8 +909,9 @@ void	finish_fill_label_range(t_champ *champ)
 			else
 			{
 				/* else Не нашел метку */
-				printf("Не нашел метку1\n");
-				exit(0);
+				// printf("Не нашел метку1\n");
+				// exit(0);
+				sum_range(champ, champ->labels[i].l_name_1, 1, i);
 			}
 		}
 		if (champ->labels[i].l_name_2[0] && champ->labels[i].range_2 == 0)
@@ -815,8 +921,10 @@ void	finish_fill_label_range(t_champ *champ)
 			else
 			{
 				/* else Не нашел метку */
-				printf("Не нашел метку2 %s\n", champ->labels[i].l_name_2);
-				exit(0);
+				// printf("Не нашел метку2 %s\n", champ->labels[i].l_name_2);
+				sum_range(champ, champ->labels[i].l_name_2, 2, i);
+				// champ->labels[i].range_2 = 153;
+				// exit(0);
 			}
 		}
 		if (champ->labels[i].l_name_3[0] && champ->labels[i].range_3 == 0)
@@ -826,8 +934,9 @@ void	finish_fill_label_range(t_champ *champ)
 			else
 			{
 				/* else Не нашел метку */
-				printf("Не нашел метку3\n");
-				exit(0);
+				// printf("Не нашел метку3\n");
+				// exit(0);
+				sum_range(champ, champ->labels[i].l_name_3, 3, i);
 			}
 		}
 		i++;
@@ -881,6 +990,15 @@ void	is_file_valid(char *name, t_champ *champ)
 		exit (0);
 	}
 	close(fd);
+	fd = open(name, O_RDONLY);
+	int is_ok_to_end = 0;
+	char buff[2000000];
+	int length = read(fd, &buff, 2000000);
+	if (!(buff[length] == '\0' && buff[length-1] == '\n'))
+	{
+		//error
+		exit(0);
+	}
 }
 
 void	free_label(t_label label)
@@ -931,15 +1049,198 @@ char	*change_extension(char *filename, char *old, char *new)
 
 int		count_code_size(t_champ *champ)
 {
+	int i;
+	int sum;
 
-	return 0;
+	sum = 0;
+	i = 0;
+	while (i != champ->l_size)
+	{
+		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + champ->labels[i].cmd_type + 1;
+		i++;
+	}
+	// printf("SUM - %d\n", sum);
+	return (sum);
 }
 
-void	to_bin_code(t_champ *champ)
+void	zero_exec(t_champ *champ, int exec_size)
 {
-	champ->code_size = count_code_size(champ);
+	int i;
 
-	champ->exec_code = malloc(sizeof(char) * (16 + PROG_NAME_LENGTH + COMMENT_LENGTH + champ->code_size));
+	i = 0;
+	while (i < exec_size)
+		champ->exec_code[i++] = 0;
+}
+
+void	write_4_byte(t_champ *champ, unsigned int to_write)
+{
+	unsigned char buff;
+	int shift;
+
+	shift = 24;
+	while (shift >= 0)
+	{
+		buff = (unsigned char)((to_write >> shift));
+		champ->exec_code[champ->ind_wr] = buff;
+		shift -= 8;
+		champ->ind_wr++;
+	}
+}
+
+void	write_2_byte(t_champ *champ, unsigned int to_write)
+{
+	unsigned char buff;
+	int shift;
+
+	shift = 8;
+	while (shift >= 0)
+	{
+		buff = (unsigned char)((to_write >> shift));
+		champ->exec_code[champ->ind_wr] = buff;
+		shift -= 8;
+		champ->ind_wr++;
+	}
+}
+
+void	write_1_byte(t_champ *champ, unsigned int to_write)
+{
+	champ->exec_code[champ->ind_wr++] = (unsigned char)(to_write);
+}
+
+void	write_bin_head(t_champ *champ)
+{
+	int i;
+
+	i = 0;
+	write_4_byte(champ, (unsigned int)COREWAR_EXEC_MAGIC);
+	while (champ->name[i])
+	{
+		champ->exec_code[champ->ind_wr++] = champ->name[i++];
+	}
+	champ->ind_wr = PROG_NAME_LENGTH + 8;
+	write_4_byte(champ, (unsigned int)champ->code_size);
+	i = 0;
+	while (champ->comment[i])
+	{
+		champ->exec_code[champ->ind_wr++] = champ->comment[i++];
+	}
+	champ->ind_wr = PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
+}
+
+unsigned char	count_code_type_arg(t_champ *champ, int i)
+{
+	unsigned char ret;
+
+	ret = 0;
+	if (champ->labels[i].type_1 == 1)
+		ret += T_REG;
+	else if (champ->labels[i].type_1 == 2)
+		ret += T_DIR;
+	else if (champ->labels[i].type_1 == 3)
+		ret += T_IND;
+	ret = ret << 2;
+	if (champ->labels[i].type_2 == 1)
+		ret += T_REG;
+	else if (champ->labels[i].type_2 == 2)
+		ret += T_DIR;
+	else if (champ->labels[i].type_2 == 3)
+		ret += T_IND;
+	ret = ret << 2;
+	if (champ->labels[i].type_3 == 1)
+		ret += T_REG;
+	else if (champ->labels[i].type_3 == 2)
+		ret += T_DIR;
+	else if (champ->labels[i].type_3 == 3)
+		ret += T_IND;
+	else
+	{
+		ret += 0;
+	}
+	ret = ret << 2;
+	return (ret);
+	// printf("%x - HEX %d - DEC\n", ret, ret);
+	// exit(0);
+}
+
+// void	check_range_sign(t_champ *champ, int i)
+// {
+// 	if (champ->labels[i].range_1 < 0)
+
+// }
+
+void	process_args(t_champ *champ, int i)
+{
+	// check_range_sign(champ, i);
+	if (champ->labels[i].arg_1 == 1)
+		write_1_byte(champ, champ->labels[i].range_1);
+	else if (champ->labels[i].arg_1 == 2)
+		write_2_byte(champ, champ->labels[i].range_1);
+	else if (champ->labels[i].arg_1 == 4)
+		write_4_byte(champ, champ->labels[i].range_1);
+	if (champ->labels[i].arg_2 == 1)
+		write_1_byte(champ, champ->labels[i].range_2);
+	else if (champ->labels[i].arg_2 == 2)
+		write_2_byte(champ, champ->labels[i].range_2);
+	else if (champ->labels[i].arg_2 == 4)
+	{
+		write_4_byte(champ, champ->labels[i].range_2);
+		// printf("%x %d -RANGE_2\n", champ->labels[i].range_2, champ->labels[i].range_2);
+	}
+	if (champ->labels[i].arg_3 == 1)
+		write_1_byte(champ, champ->labels[i].range_3);
+	else if (champ->labels[i].arg_3 == 2)
+		write_2_byte(champ, champ->labels[i].range_3);
+	else if (champ->labels[i].arg_3 == 4)
+		write_4_byte(champ, champ->labels[i].range_3);
+}
+
+void	write_exec_code(t_champ *champ)
+{
+	int i;
+
+	i = 0;
+
+	// int start = champ->ind_wr;
+	while (i < champ->l_size)
+	{
+		champ->exec_code[champ->ind_wr++] = champ->labels[i].cmd_code;
+		// printf("%s - name\n", champ->labels[i].cmd_name);
+		if (champ->labels[i].cmd_type == 1)
+			champ->exec_code[champ->ind_wr++] = count_code_type_arg(champ, i);
+		process_args(champ, i);
+		// for (;start < champ->ind_wr; start++)
+		// {
+		// 	printf("%02x ", champ->exec_code[start]);
+		// }
+		// printf("\n");
+		i++;
+	}
+}
+
+void	to_bin_code(t_champ *champ, int fd)
+{
+	int i;
+	int exec_size;
+
+	i = 0;
+	champ->code_size = count_code_size(champ);
+	exec_size = 16 + PROG_NAME_LENGTH + COMMENT_LENGTH + champ->code_size;
+	champ->exec_code = malloc(sizeof(char) * (exec_size));
+	zero_exec(champ, exec_size);
+	champ->ind_wr = 0;
+	write_bin_head(champ);
+	write_exec_code(champ);
+	i = 0;
+	for (; i < exec_size; i++)
+	{
+		printf("%02x", champ->exec_code[i]);
+		// if (i%2 == 1)
+		// 	printf(" ");
+		if ((i+1)%30 == 0)
+			printf("\n");
+	}
+	printf("\n");
+	// printf("\n%d | code_size - %d\n", i, champ->code_size);
 }
 
 int	main(int argc, char **argv)
@@ -957,19 +1258,19 @@ int	main(int argc, char **argv)
 	{
 		is_file_valid(argv[1], &champ);
 	}
-	//to_bin_code(&champ);
 	char *file_name = change_extension(argv[1], ".s", ".cor");
 	fd = open(file_name, O_CREAT|O_WRONLY|O_TRUNC, 0777);
-	printf("\n\n\n");
-	printf("%s - NAME\n", champ.name);
-	printf("%s - COMMENT\n", champ.comment);
-	for (int i = 0; i < champ.l_size; i++)
-	{
-		printf("%s - CMD_NAME, %x - CMD_CODE, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3\n", champ.labels[i].cmd_name, \
-						champ.labels[i].cmd_code ,champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
-						champ.labels[i].cmd_type, champ.labels[i].l_name_1, champ.labels[i].l_name_2, champ.labels[i].range_1, champ.labels[i].range_2, champ.labels[i].range_3);
-	}
-	printf("fdsafa\n");
+	to_bin_code(&champ, fd);
+	// printf("\n\n\n");
+	// printf("%s - NAME\n", champ.name);
+	// printf("%s - COMMENT\n", champ.comment);
+	// for (int i = 0; i < champ.l_size; i++)
+	// {
+	// 	printf("%s - CMD_NAME, %x - CMD_CODE, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3\n", champ.labels[i].cmd_name, \
+	// 					champ.labels[i].cmd_code ,champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
+	// 					champ.labels[i].cmd_type, champ.labels[i].l_name_1, champ.labels[i].l_name_2, champ.labels[i].range_1, champ.labels[i].range_2, champ.labels[i].range_3);
+	// }
+	// printf("fdsafa\n");
 	free_all(champ);
 	return (0);
 }
