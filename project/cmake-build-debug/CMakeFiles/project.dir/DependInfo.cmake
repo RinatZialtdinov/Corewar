@@ -4,6 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/damerica/Desktop/project/check.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/check.c.o"
+  "/Users/damerica/Desktop/project/count.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/count.c.o"
+  "/Users/damerica/Desktop/project/find_label.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/find_label.c.o"
+  "/Users/damerica/Desktop/project/free_init.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/free_init.c.o"
+  "/Users/damerica/Desktop/project/get_values.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/get_values.c.o"
+  "/Users/damerica/Desktop/project/is_command.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/is_command.c.o"
+  "/Users/damerica/Desktop/project/is_comment.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/is_comment.c.o"
+  "/Users/damerica/Desktop/project/is_label.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/is_label.c.o"
+  "/Users/damerica/Desktop/project/is_name.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/is_name.c.o"
   "/Users/damerica/Desktop/project/libft/ft_atoi.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/libft/ft_atoi.c.o"
   "/Users/damerica/Desktop/project/libft/ft_bzero.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/libft/ft_bzero.c.o"
   "/Users/damerica/Desktop/project/libft/ft_ft_nword.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/libft/ft_ft_nword.c.o"
@@ -73,6 +82,10 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/damerica/Desktop/project/libft/ft_write_str.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/libft/ft_write_str.c.o"
   "/Users/damerica/Desktop/project/libft/get_next_line.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/libft/get_next_line.c.o"
   "/Users/damerica/Desktop/project/main.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/main.c.o"
+  "/Users/damerica/Desktop/project/switch_args.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/switch_args.c.o"
+  "/Users/damerica/Desktop/project/valid.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/valid.c.o"
+  "/Users/damerica/Desktop/project/write_bin.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/write_bin.c.o"
+  "/Users/damerica/Desktop/project/write_n_byte.c" "/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles/project.dir/write_n_byte.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

@@ -55,7 +55,7 @@ typedef char	t_arg_type;
 
 #define T_REG					1
 #define T_DIR					2
-#define T_IND					3
+#define T_IND					4
 #define T_LAB					8
 
 /*
@@ -65,6 +65,11 @@ typedef char	t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+
+#include <fcntl.h>
+#include <stdlib.h>
+#include "libft/libft.h"
+#include "asm_op.h"
 
 typedef struct s_l
 {
@@ -108,5 +113,34 @@ typedef struct  s_champ
 	t_label	*labels;
 }               t_champ;
 
+void	free_all(t_champ champ);
+int	switch_args(char *line, int count_arg, t_champ *champ);
+void	increase_array(t_champ *champ);
+char	*check_name_com(char *line, t_champ *champ);
+int	is_command(char *line, t_champ *champ);
+void	skip_spaces(int i, char *line);
+int	is_comment(char *line);
+int	is_name(char **line, int fd, t_champ *champ, int name);
+int	is_main_comment(char **line, int fd, t_champ *champ, int mc);
+int	is_command_or_not(char *line, t_champ *champ);
+int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg);
+int	is_comment(char *line);
+int		is_label(char *line, t_champ *champ);
+void	write_4_byte(t_champ *champ, unsigned int to_write);
+void	write_2_byte(t_champ *champ, unsigned int to_write);
+void	write_1_byte(t_champ *champ, unsigned int to_write);
+void	zero_exec(t_champ *champ, int exec_size);
+void	init_array(t_champ *champ);
+int	get_reg_arg_val(t_champ *champ, char *line, int *i);
+int		char_in_label(char el);
+int	get_dir_ind_arg_val(t_champ *champ, char *line, int *i);
+void	find_label(t_champ *champ);
+void	is_file_valid(char *name, t_champ *champ);
+void	check_type_arg(t_champ  *champ);
+char	*change_extension(char *filename, char *old, char *new);
+void	to_bin_code(t_champ *champ, int fd);
+void	finish_fill_label_range(t_champ *champ);
+unsigned char	count_code_type_arg(t_champ *champ, int i);
+int		count_code_size(t_champ *champ);
 
 #endif

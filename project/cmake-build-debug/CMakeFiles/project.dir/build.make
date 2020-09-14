@@ -961,9 +961,126 @@ CMakeFiles/project.dir/libft/get_next_line.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/libft/get_next_line.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/libft/get_next_line.c -o CMakeFiles/project.dir/libft/get_next_line.c.s
 
+CMakeFiles/project.dir/check.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/check.c.o: ../check.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/project.dir/check.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/check.c.o   -c /Users/damerica/Desktop/project/check.c
+
+CMakeFiles/project.dir/check.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/check.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/check.c > CMakeFiles/project.dir/check.c.i
+
+CMakeFiles/project.dir/check.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/check.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/check.c -o CMakeFiles/project.dir/check.c.s
+
+CMakeFiles/project.dir/count.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/count.c.o: ../count.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/project.dir/count.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/count.c.o   -c /Users/damerica/Desktop/project/count.c
+
+CMakeFiles/project.dir/count.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/count.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/count.c > CMakeFiles/project.dir/count.c.i
+
+CMakeFiles/project.dir/count.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/count.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/count.c -o CMakeFiles/project.dir/count.c.s
+
+CMakeFiles/project.dir/find_label.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/find_label.c.o: ../find_label.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/project.dir/find_label.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/find_label.c.o   -c /Users/damerica/Desktop/project/find_label.c
+
+CMakeFiles/project.dir/find_label.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/find_label.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/find_label.c > CMakeFiles/project.dir/find_label.c.i
+
+CMakeFiles/project.dir/find_label.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/find_label.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/find_label.c -o CMakeFiles/project.dir/find_label.c.s
+
+CMakeFiles/project.dir/free_init.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/free_init.c.o: ../free_init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/project.dir/free_init.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/free_init.c.o   -c /Users/damerica/Desktop/project/free_init.c
+
+CMakeFiles/project.dir/free_init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/free_init.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/free_init.c > CMakeFiles/project.dir/free_init.c.i
+
+CMakeFiles/project.dir/free_init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/free_init.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/free_init.c -o CMakeFiles/project.dir/free_init.c.s
+
+CMakeFiles/project.dir/get_values.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/get_values.c.o: ../get_values.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/project.dir/get_values.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/get_values.c.o   -c /Users/damerica/Desktop/project/get_values.c
+
+CMakeFiles/project.dir/get_values.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/get_values.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/get_values.c > CMakeFiles/project.dir/get_values.c.i
+
+CMakeFiles/project.dir/get_values.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/get_values.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/get_values.c -o CMakeFiles/project.dir/get_values.c.s
+
+CMakeFiles/project.dir/is_command.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/is_command.c.o: ../is_command.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/project.dir/is_command.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/is_command.c.o   -c /Users/damerica/Desktop/project/is_command.c
+
+CMakeFiles/project.dir/is_command.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/is_command.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/is_command.c > CMakeFiles/project.dir/is_command.c.i
+
+CMakeFiles/project.dir/is_command.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/is_command.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/is_command.c -o CMakeFiles/project.dir/is_command.c.s
+
+CMakeFiles/project.dir/is_comment.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/is_comment.c.o: ../is_comment.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/project.dir/is_comment.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/is_comment.c.o   -c /Users/damerica/Desktop/project/is_comment.c
+
+CMakeFiles/project.dir/is_comment.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/is_comment.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/is_comment.c > CMakeFiles/project.dir/is_comment.c.i
+
+CMakeFiles/project.dir/is_comment.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/is_comment.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/is_comment.c -o CMakeFiles/project.dir/is_comment.c.s
+
+CMakeFiles/project.dir/is_label.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/is_label.c.o: ../is_label.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/project.dir/is_label.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/is_label.c.o   -c /Users/damerica/Desktop/project/is_label.c
+
+CMakeFiles/project.dir/is_label.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/is_label.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/is_label.c > CMakeFiles/project.dir/is_label.c.i
+
+CMakeFiles/project.dir/is_label.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/is_label.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/is_label.c -o CMakeFiles/project.dir/is_label.c.s
+
+CMakeFiles/project.dir/is_name.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/is_name.c.o: ../is_name.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/project.dir/is_name.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/is_name.c.o   -c /Users/damerica/Desktop/project/is_name.c
+
+CMakeFiles/project.dir/is_name.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/is_name.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/is_name.c > CMakeFiles/project.dir/is_name.c.i
+
+CMakeFiles/project.dir/is_name.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/is_name.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/is_name.c -o CMakeFiles/project.dir/is_name.c.s
+
 CMakeFiles/project.dir/main.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/project.dir/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/project.dir/main.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/main.c.o   -c /Users/damerica/Desktop/project/main.c
 
 CMakeFiles/project.dir/main.c.i: cmake_force
@@ -973,6 +1090,58 @@ CMakeFiles/project.dir/main.c.i: cmake_force
 CMakeFiles/project.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/main.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/main.c -o CMakeFiles/project.dir/main.c.s
+
+CMakeFiles/project.dir/switch_args.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/switch_args.c.o: ../switch_args.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/project.dir/switch_args.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/switch_args.c.o   -c /Users/damerica/Desktop/project/switch_args.c
+
+CMakeFiles/project.dir/switch_args.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/switch_args.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/switch_args.c > CMakeFiles/project.dir/switch_args.c.i
+
+CMakeFiles/project.dir/switch_args.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/switch_args.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/switch_args.c -o CMakeFiles/project.dir/switch_args.c.s
+
+CMakeFiles/project.dir/valid.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/valid.c.o: ../valid.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/project.dir/valid.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/valid.c.o   -c /Users/damerica/Desktop/project/valid.c
+
+CMakeFiles/project.dir/valid.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/valid.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/valid.c > CMakeFiles/project.dir/valid.c.i
+
+CMakeFiles/project.dir/valid.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/valid.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/valid.c -o CMakeFiles/project.dir/valid.c.s
+
+CMakeFiles/project.dir/write_bin.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/write_bin.c.o: ../write_bin.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/project.dir/write_bin.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/write_bin.c.o   -c /Users/damerica/Desktop/project/write_bin.c
+
+CMakeFiles/project.dir/write_bin.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/write_bin.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/write_bin.c > CMakeFiles/project.dir/write_bin.c.i
+
+CMakeFiles/project.dir/write_bin.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/write_bin.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/write_bin.c -o CMakeFiles/project.dir/write_bin.c.s
+
+CMakeFiles/project.dir/write_n_byte.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/write_n_byte.c.o: ../write_n_byte.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/project.dir/write_n_byte.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project.dir/write_n_byte.c.o   -c /Users/damerica/Desktop/project/write_n_byte.c
+
+CMakeFiles/project.dir/write_n_byte.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project.dir/write_n_byte.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/damerica/Desktop/project/write_n_byte.c > CMakeFiles/project.dir/write_n_byte.c.i
+
+CMakeFiles/project.dir/write_n_byte.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project.dir/write_n_byte.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/damerica/Desktop/project/write_n_byte.c -o CMakeFiles/project.dir/write_n_byte.c.s
 
 # Object files for target project
 project_OBJECTS = \
@@ -1044,7 +1213,20 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/libft/ft_toupper.c.o" \
 "CMakeFiles/project.dir/libft/ft_write_str.c.o" \
 "CMakeFiles/project.dir/libft/get_next_line.c.o" \
-"CMakeFiles/project.dir/main.c.o"
+"CMakeFiles/project.dir/check.c.o" \
+"CMakeFiles/project.dir/count.c.o" \
+"CMakeFiles/project.dir/find_label.c.o" \
+"CMakeFiles/project.dir/free_init.c.o" \
+"CMakeFiles/project.dir/get_values.c.o" \
+"CMakeFiles/project.dir/is_command.c.o" \
+"CMakeFiles/project.dir/is_comment.c.o" \
+"CMakeFiles/project.dir/is_label.c.o" \
+"CMakeFiles/project.dir/is_name.c.o" \
+"CMakeFiles/project.dir/main.c.o" \
+"CMakeFiles/project.dir/switch_args.c.o" \
+"CMakeFiles/project.dir/valid.c.o" \
+"CMakeFiles/project.dir/write_bin.c.o" \
+"CMakeFiles/project.dir/write_n_byte.c.o"
 
 # External object files for target project
 project_EXTERNAL_OBJECTS =
@@ -1117,10 +1299,23 @@ project: CMakeFiles/project.dir/libft/ft_tolower.c.o
 project: CMakeFiles/project.dir/libft/ft_toupper.c.o
 project: CMakeFiles/project.dir/libft/ft_write_str.c.o
 project: CMakeFiles/project.dir/libft/get_next_line.c.o
+project: CMakeFiles/project.dir/check.c.o
+project: CMakeFiles/project.dir/count.c.o
+project: CMakeFiles/project.dir/find_label.c.o
+project: CMakeFiles/project.dir/free_init.c.o
+project: CMakeFiles/project.dir/get_values.c.o
+project: CMakeFiles/project.dir/is_command.c.o
+project: CMakeFiles/project.dir/is_comment.c.o
+project: CMakeFiles/project.dir/is_label.c.o
+project: CMakeFiles/project.dir/is_name.c.o
 project: CMakeFiles/project.dir/main.c.o
+project: CMakeFiles/project.dir/switch_args.c.o
+project: CMakeFiles/project.dir/valid.c.o
+project: CMakeFiles/project.dir/write_bin.c.o
+project: CMakeFiles/project.dir/write_n_byte.c.o
 project: CMakeFiles/project.dir/build.make
 project: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Linking C executable project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/damerica/Desktop/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Linking C executable project"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/project.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

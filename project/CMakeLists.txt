@@ -78,5 +78,18 @@ add_executable(project
         libft/libft.h
         asm.h
         asm_op.h
+        check.c
+        count.c
+        find_label.c
+        free_init.c
+        get_values.c
+        is_command.c
+        is_comment.c
+        is_label.c
+        is_name.c
         main.c
-        op.h)
+        op.h
+        switch_args.c
+        valid.c
+        write_bin.c
+        write_n_byte.c)

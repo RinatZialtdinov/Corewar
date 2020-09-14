@@ -19,10 +19,22 @@ fcntl.h
 -
 
 /Users/damerica/Desktop/project/asm.h
+fcntl.h
+-
+stdlib.h
+-
+libft/libft.h
+/Users/damerica/Desktop/project/libft/libft.h
+asm_op.h
+/Users/damerica/Desktop/project/asm_op.h
 
 /Users/damerica/Desktop/project/asm_op.h
 libft.h
 /Users/damerica/Desktop/project/libft.h
+asm.h
+/Users/damerica/Desktop/project/asm.h
+
+/Users/damerica/Desktop/project/find_label.c
 asm.h
 /Users/damerica/Desktop/project/asm.h
 
@@ -37,20 +49,4 @@ unistd.h
 -
 fcntl.h
 -
-
-/Users/damerica/Desktop/project/main.c
-asm_op.h
-/Users/damerica/Desktop/project/asm_op.h
-asm.h
-/Users/damerica/Desktop/project/asm.h
-op.h
-/Users/damerica/Desktop/project/op.h
-stdlib.h
--
-libft/libft.h
-/Users/damerica/Desktop/project/libft/libft.h
-fcntl.h
--
-
-/Users/damerica/Desktop/project/op.h
 

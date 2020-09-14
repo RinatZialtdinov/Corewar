@@ -88,6 +88,33 @@
 		<Unit filename="/Users/damerica/Desktop/project/asm_op.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/check.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/count.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/find_label.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/free_init.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/get_values.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/is_command.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/is_comment.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/is_label.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/is_name.c">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/Users/damerica/Desktop/project/libft/ft_atoi.c">
 			<Option target="project"/>
 		</Unit>
@@ -299,6 +326,18 @@
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/Users/damerica/Desktop/project/op.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/switch_args.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/valid.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/write_bin.c">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/damerica/Desktop/project/write_n_byte.c">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/Users/damerica/Desktop/project/CMakeLists.txt">

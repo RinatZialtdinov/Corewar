@@ -143,6 +143,249 @@ project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
+check.o: check.c.o
+
+.PHONY : check.o
+
+# target to build an object file
+check.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/check.c.o
+.PHONY : check.c.o
+
+check.i: check.c.i
+
+.PHONY : check.i
+
+# target to preprocess a source file
+check.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/check.c.i
+.PHONY : check.c.i
+
+check.s: check.c.s
+
+.PHONY : check.s
+
+# target to generate assembly for a file
+check.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/check.c.s
+.PHONY : check.c.s
+
+count.o: count.c.o
+
+.PHONY : count.o
+
+# target to build an object file
+count.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/count.c.o
+.PHONY : count.c.o
+
+count.i: count.c.i
+
+.PHONY : count.i
+
+# target to preprocess a source file
+count.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/count.c.i
+.PHONY : count.c.i
+
+count.s: count.c.s
+
+.PHONY : count.s
+
+# target to generate assembly for a file
+count.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/count.c.s
+.PHONY : count.c.s
+
+find_label.o: find_label.c.o
+
+.PHONY : find_label.o
+
+# target to build an object file
+find_label.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/find_label.c.o
+.PHONY : find_label.c.o
+
+find_label.i: find_label.c.i
+
+.PHONY : find_label.i
+
+# target to preprocess a source file
+find_label.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/find_label.c.i
+.PHONY : find_label.c.i
+
+find_label.s: find_label.c.s
+
+.PHONY : find_label.s
+
+# target to generate assembly for a file
+find_label.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/find_label.c.s
+.PHONY : find_label.c.s
+
+free_init.o: free_init.c.o
+
+.PHONY : free_init.o
+
+# target to build an object file
+free_init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/free_init.c.o
+.PHONY : free_init.c.o
+
+free_init.i: free_init.c.i
+
+.PHONY : free_init.i
+
+# target to preprocess a source file
+free_init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/free_init.c.i
+.PHONY : free_init.c.i
+
+free_init.s: free_init.c.s
+
+.PHONY : free_init.s
+
+# target to generate assembly for a file
+free_init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/free_init.c.s
+.PHONY : free_init.c.s
+
+get_values.o: get_values.c.o
+
+.PHONY : get_values.o
+
+# target to build an object file
+get_values.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/get_values.c.o
+.PHONY : get_values.c.o
+
+get_values.i: get_values.c.i
+
+.PHONY : get_values.i
+
+# target to preprocess a source file
+get_values.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/get_values.c.i
+.PHONY : get_values.c.i
+
+get_values.s: get_values.c.s
+
+.PHONY : get_values.s
+
+# target to generate assembly for a file
+get_values.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/get_values.c.s
+.PHONY : get_values.c.s
+
+is_command.o: is_command.c.o
+
+.PHONY : is_command.o
+
+# target to build an object file
+is_command.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_command.c.o
+.PHONY : is_command.c.o
+
+is_command.i: is_command.c.i
+
+.PHONY : is_command.i
+
+# target to preprocess a source file
+is_command.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_command.c.i
+.PHONY : is_command.c.i
+
+is_command.s: is_command.c.s
+
+.PHONY : is_command.s
+
+# target to generate assembly for a file
+is_command.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_command.c.s
+.PHONY : is_command.c.s
+
+is_comment.o: is_comment.c.o
+
+.PHONY : is_comment.o
+
+# target to build an object file
+is_comment.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_comment.c.o
+.PHONY : is_comment.c.o
+
+is_comment.i: is_comment.c.i
+
+.PHONY : is_comment.i
+
+# target to preprocess a source file
+is_comment.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_comment.c.i
+.PHONY : is_comment.c.i
+
+is_comment.s: is_comment.c.s
+
+.PHONY : is_comment.s
+
+# target to generate assembly for a file
+is_comment.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_comment.c.s
+.PHONY : is_comment.c.s
+
+is_label.o: is_label.c.o
+
+.PHONY : is_label.o
+
+# target to build an object file
+is_label.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_label.c.o
+.PHONY : is_label.c.o
+
+is_label.i: is_label.c.i
+
+.PHONY : is_label.i
+
+# target to preprocess a source file
+is_label.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_label.c.i
+.PHONY : is_label.c.i
+
+is_label.s: is_label.c.s
+
+.PHONY : is_label.s
+
+# target to generate assembly for a file
+is_label.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_label.c.s
+.PHONY : is_label.c.s
+
+is_name.o: is_name.c.o
+
+.PHONY : is_name.o
+
+# target to build an object file
+is_name.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_name.c.o
+.PHONY : is_name.c.o
+
+is_name.i: is_name.c.i
+
+.PHONY : is_name.i
+
+# target to preprocess a source file
+is_name.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_name.c.i
+.PHONY : is_name.c.i
+
+is_name.s: is_name.c.s
+
+.PHONY : is_name.s
+
+# target to generate assembly for a file
+is_name.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/is_name.c.s
+.PHONY : is_name.c.s
+
 libft/ft_atoi.o: libft/ft_atoi.c.o
 
 .PHONY : libft/ft_atoi.o
@@ -2006,6 +2249,114 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/main.c.s
 .PHONY : main.c.s
 
+switch_args.o: switch_args.c.o
+
+.PHONY : switch_args.o
+
+# target to build an object file
+switch_args.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/switch_args.c.o
+.PHONY : switch_args.c.o
+
+switch_args.i: switch_args.c.i
+
+.PHONY : switch_args.i
+
+# target to preprocess a source file
+switch_args.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/switch_args.c.i
+.PHONY : switch_args.c.i
+
+switch_args.s: switch_args.c.s
+
+.PHONY : switch_args.s
+
+# target to generate assembly for a file
+switch_args.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/switch_args.c.s
+.PHONY : switch_args.c.s
+
+valid.o: valid.c.o
+
+.PHONY : valid.o
+
+# target to build an object file
+valid.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/valid.c.o
+.PHONY : valid.c.o
+
+valid.i: valid.c.i
+
+.PHONY : valid.i
+
+# target to preprocess a source file
+valid.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/valid.c.i
+.PHONY : valid.c.i
+
+valid.s: valid.c.s
+
+.PHONY : valid.s
+
+# target to generate assembly for a file
+valid.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/valid.c.s
+.PHONY : valid.c.s
+
+write_bin.o: write_bin.c.o
+
+.PHONY : write_bin.o
+
+# target to build an object file
+write_bin.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_bin.c.o
+.PHONY : write_bin.c.o
+
+write_bin.i: write_bin.c.i
+
+.PHONY : write_bin.i
+
+# target to preprocess a source file
+write_bin.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_bin.c.i
+.PHONY : write_bin.c.i
+
+write_bin.s: write_bin.c.s
+
+.PHONY : write_bin.s
+
+# target to generate assembly for a file
+write_bin.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_bin.c.s
+.PHONY : write_bin.c.s
+
+write_n_byte.o: write_n_byte.c.o
+
+.PHONY : write_n_byte.o
+
+# target to build an object file
+write_n_byte.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_n_byte.c.o
+.PHONY : write_n_byte.c.o
+
+write_n_byte.i: write_n_byte.c.i
+
+.PHONY : write_n_byte.i
+
+# target to preprocess a source file
+write_n_byte.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_n_byte.c.i
+.PHONY : write_n_byte.c.i
+
+write_n_byte.s: write_n_byte.c.s
+
+.PHONY : write_n_byte.s
+
+# target to generate assembly for a file
+write_n_byte.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/write_n_byte.c.s
+.PHONY : write_n_byte.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -2015,6 +2366,33 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project"
+	@echo "... check.o"
+	@echo "... check.i"
+	@echo "... check.s"
+	@echo "... count.o"
+	@echo "... count.i"
+	@echo "... count.s"
+	@echo "... find_label.o"
+	@echo "... find_label.i"
+	@echo "... find_label.s"
+	@echo "... free_init.o"
+	@echo "... free_init.i"
+	@echo "... free_init.s"
+	@echo "... get_values.o"
+	@echo "... get_values.i"
+	@echo "... get_values.s"
+	@echo "... is_command.o"
+	@echo "... is_command.i"
+	@echo "... is_command.s"
+	@echo "... is_comment.o"
+	@echo "... is_comment.i"
+	@echo "... is_comment.s"
+	@echo "... is_label.o"
+	@echo "... is_label.i"
+	@echo "... is_label.s"
+	@echo "... is_name.o"
+	@echo "... is_name.i"
+	@echo "... is_name.s"
 	@echo "... libft/ft_atoi.o"
 	@echo "... libft/ft_atoi.i"
 	@echo "... libft/ft_atoi.s"
@@ -2222,6 +2600,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... switch_args.o"
+	@echo "... switch_args.i"
+	@echo "... switch_args.s"
+	@echo "... valid.o"
+	@echo "... valid.i"
+	@echo "... valid.s"
+	@echo "... write_bin.o"
+	@echo "... write_bin.i"
+	@echo "... write_bin.s"
+	@echo "... write_n_byte.o"
+	@echo "... write_n_byte.i"
+	@echo "... write_n_byte.s"
 .PHONY : help
 
 
