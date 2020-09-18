@@ -60,7 +60,7 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			i++;
 			while (char_in_label(line[i]))
 			{
-				//printf("ifowhfisdhofhsdoifhsdofhsdofhosdhfosdhfosdhfosd|_________________________________|||||\n");
+				////printf("ifowhfisdhofhsdoifhsdofhsdofhosdhfosdhfosdhfosd|_________________________________|||||\n");
 				if (g_op[k].args_num - count_arg + 1 == 1)
 				{
 					champ->labels[champ->l_size].arg_now = 1;
@@ -83,10 +83,10 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			champ->labels[champ->l_size].l_name_1[j] = '\0';
 			champ->labels[champ->l_size].l_name_2[j] = '\0';
 			champ->labels[champ->l_size].l_name_3[j] = '\0';
-			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0' && line[i] != COMMENT_CHAR)
+			if (line[i] != ' ' && line[i] != ',' && line[i] != '\t' && line[i] != '\0' && line[i] != COMMENT_CHAR)
 			{
 				//error не тот символ
-				printf("не тот символ\n");
+				//printf("не тот символ11, %s |%c|\n", line, line[i]);
 				free_all(*champ);
 				exit (0);
 			}
@@ -108,8 +108,8 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			// if (line[i - 1] == '-' || i == 1)
 			// {
 			// 	// error Невалидный аргумент
-			// 	printf("Невалидный аргумент\n");
-			// 	exit(0);
+			// 	//printf("Невалидный аргумент\n");
+			// 	exit(-1);
 			// }
 			if (g_op[k].args_num - count_arg + 1 == 1)
 				champ->labels[champ->l_size].range_1 = get_dir_ind_arg_val(champ, line, &i);
@@ -121,9 +121,9 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 		else
 		{
 			//error
-			printf("не валидный аргумент\n");
+			//printf("не валидный аргумент\n");
 			free_all(*champ);
-			exit(0);
+			exit(-1);
 		}
 		
 	}
@@ -154,8 +154,8 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 		// if (line[i - 1] == '-' && i == 1)
 		// {
 		// 	// error Невалидный аргумент2
-		// 	printf("Невалидный аргумент2\n");
-		// 	exit(0);
+		// 	//printf("Невалидный аргумент2\n");
+		// 	exit(-1);
 		// }
 	}
 	else if (line[i] == LABEL_CHAR)
@@ -203,7 +203,7 @@ int	switch_args(char *line, int count_arg, t_champ *champ)
 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 			{
 				//error не тот символ2
-				printf("не тот символ2\n");
+				//printf("не тот символ2\n");
 				free_all(*champ);
 				exit (0);
 			}

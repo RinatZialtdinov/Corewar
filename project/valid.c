@@ -25,13 +25,26 @@ void is_header_valid(int fd, t_champ *champ)
 		if (is_command_or_not(line, champ))
 		{
 			//error
-			printf("hey\n");
-			printf("%s\n", line);
+			//printf("hey\n");
+			//printf("%s\n", line);
 			free_all(*champ);
-			exit(0);
+			exit(-1);
 		}
 		free(line);
 	}
+}
+
+void	is_end_comment(t_champ *champ, char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '#' || line[i] == '\0')
+		champ->is_end_comment = 1;
+	else 
+		champ->is_end_comment = 0;
 }
 
 void	is_body_valid(int fd, t_champ *champ)
@@ -41,7 +54,7 @@ void	is_body_valid(int fd, t_champ *champ)
 
 	while ((ans = get_next_line(fd, &line)) > 0)
 	{
-		//printf("%s\n", line);
+		////printf("%s\n", line);
 		if (is_comment(line))
 			;
 		else if (is_command(line, champ))
@@ -52,11 +65,13 @@ void	is_body_valid(int fd, t_champ *champ)
 		{
 			// ERROR nevalidnyi vvod
 			free_all(*champ);
-			printf("nevalidnyi vvod\n");
-			exit(0);
+			//printf("nevalidnyi vvod, %s\n", line);
+			exit(-1);
 		}
+		is_end_comment(champ, line);
 		free(line);
 	}
+	// //printf("hey\n");
 	finish_fill_label_range(champ);
 }
 
@@ -72,6 +87,7 @@ void	is_file_valid(char *name, t_champ *champ)
 		if (fd > 0)
 		{
 			is_header_valid(fd, champ);
+			// //printf("hey\n");
 			is_body_valid(fd, champ);
 		}
 	}
@@ -86,9 +102,10 @@ void	is_file_valid(char *name, t_champ *champ)
 	int is_ok_to_end = 0;
 	char buff[2000000];
 	int length = read(fd, &buff, 2000000);
-	if (!(buff[length] == '\0' && buff[length-1] == '\n'))
+	if (!(buff[length] == '\0' && buff[length-1] == '\n') && !champ->is_end_comment)
 	{
 		//error
-		exit(0);
+		//printf("ya tut tochno\n");
+		exit(-1);
 	}
 }

@@ -62,7 +62,7 @@
 
 // void	skip_spaces(int i, char *line)
 // {
-// 	//printf("%c\n", line[i]);
+// 	////printf("%c\n", line[i]);
 // 	while(line[i] != '\0')
 // 	{
 // 		if (line[i] == COMMENT_CHAR)
@@ -70,8 +70,8 @@
 // 		if (line[i] != ' ' || line[i] != '\t')
 // 		{
 // 			//error невалидная строка
-// 			printf("невалидная строка\n");
-// 			exit(0);
+// 			//printf("невалидная строка\n");
+// 			exit(-1);
 // 		}
 // 		i++;
 // 	}
@@ -96,18 +96,18 @@
 // 	if (mc == 1)
 // 	{
 // 		//error	два комментария
-// 		printf("два комментария\n");
+// 		//printf("два комментария\n");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	while ((*line)[i] != '"' && (*line)[i] != '\0' && (*line)[i] != COMMENT_CHAR)
 // 		i++;
 // 	if ((*line)[i] != '"')
 // 	{
 // 		//error не нашли имя
-// 		printf("не нашли имя\n");
+// 		//printf("не нашли имя\n");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	i++;
 // 	while ((*line)[i] != '"')
@@ -118,9 +118,9 @@
 // 		if (j > COMMENT_LENGTH)
 // 		{
 // 			//error длинное имя
-// 			printf("длинное имя\n");
+// 			//printf("длинное имя\n");
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 // 		else if ((*line)[i] == '\0')
 // 		{
@@ -132,13 +132,13 @@
 // 			else
 // 			{
 // 				//error неполный файл или невалидный
-// 				printf("неполный файл или невалидный\n");
+// 				//printf("неполный файл или невалидный\n");
 // 				free_all(*champ);
-// 				exit(0);
+// 				exit(-1);
 // 			}
 // 		}
 // 	}
-// 	//printf("hey\n");
+// 	////printf("hey\n");
 // 	skip_spaces(i + 1, *line);
 // 	return (1);
 // }
@@ -171,9 +171,9 @@
 // 	if (name)
 // 	{
 // 		//error  два имени
-// 		printf("два имени\n");
+// 		//printf("два имени\n");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	i = len_const;
 // 	while ((*line)[i] != '"' && (*line)[i] != '\0' && (*line)[i] != COMMENT_CHAR)
@@ -181,9 +181,9 @@
 // 	if ((*line)[i] != '"')
 // 	{
 // 		//error не нашли имя
-// 		printf("не нашли имя\n");
+// 		//printf("не нашли имя\n");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	i++;
 // 	while ((*line)[i] != '"')
@@ -194,7 +194,7 @@
 // 		if (j > PROG_NAME_LENGTH)
 // 		{
 // 			//error длинное имя
-// 			printf("длинное имя\n");
+// 			//printf("длинное имя\n");
 // 			free_all(*champ);
 // 			exit (0);
 // 		}
@@ -208,9 +208,9 @@
 // 			else
 // 			{
 // 				//error неполный файл или невалидный
-// 				printf("неполный файл или невалидный\n");
+// 				//printf("неполный файл или невалидный\n");
 // 				free_all(*champ);
-// 				exit(0);
+// 				exit(-1);
 // 			}
 // 		}
 // 	}
@@ -226,7 +226,7 @@
 // 	i = 0;
 // 	while (line[i] == ' ' || line[i] == '\t')
 // 		i++;
-// 	//printf("fsdf\n");
+// 	////printf("fsdf\n");
 // 	name_com = NULL;
 // 	name_com = check_name_com(&line[i], champ);
 // 	if (name_com == NULL)
@@ -262,10 +262,10 @@
 // 		if (is_command_or_not(line, champ))
 // 		{
 // 			//error
-// 			printf("hey\n");
-// 			printf("%s\n", line);
+// 			//printf("hey\n");
+// 			//printf("%s\n", line);
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 // 		free(line);
 // 	}
@@ -279,7 +279,7 @@
 // 	char *result;
 
 // 	i = 0;
-// 	// printf("%c_sd_s___\n", line[i]);
+// 	// //printf("%c_sd_s___\n", line[i]);
 // 	while (line[i] == ' ' && line[i] == '\t')
 // 	{
 // 		i++;
@@ -290,7 +290,7 @@
 // 	while (line[j] != ' ' && line[j] != '\t' && line[j] != '\0' && line[j] != COMMENT_CHAR\
 // 		&& line[j] != LABEL_CHAR && line[j] != DIRECT_CHAR)
 // 		j++;
-// 	// printf("%c________!!!!_________________\n", line[end]);
+// 	// //printf("%c________!!!!_________________\n", line[end]);
 // 	if (j == end)
 // 	{
 // 		return (NULL);
@@ -305,7 +305,7 @@
 // 		champ->labels[champ->l_size].cmd_code = g_op[i].code;
 // 		return (result);
 // 	}
-// 	//printf("s\n");
+// 	////printf("s\n");
 // 	return (NULL);
 // }
 
@@ -440,7 +440,7 @@
 // 		str = champ->labels[champ->l_size].l_name_3;
 // 	}
 // 	i = 0;
-// 	// printf("%s - STR\n", str);
+// 	// //printf("%s - STR\n", str);
 // 	while (i != champ->l_size)
 // 	{
 // 		if (champ->labels[i].is_label == 1 && ft_contains(str, champ->labels[i]) /*ft_strcmp(str, champ->labels[i].name) == 0*/)
@@ -481,7 +481,7 @@
 // 	{
 // 		// error Невалидный аргумент
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	return (ft_atoi(&line[1]));
 // }
@@ -498,9 +498,9 @@
 // 	if (line[*i - 1] == '-' && *i == 1)
 // 	{
 // 		// error Невалидный аргумент2
-// 		printf("Невалидный аргумент2\n");
+// 		//printf("Невалидный аргумент2\n");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	return (ft_atoi(&line[start]));
 // }
@@ -565,7 +565,7 @@
 // 			i++;
 // 			while (char_in_label(line[i]))
 // 			{
-// 				//printf("ifowhfisdhofhsdoifhsdofhsdofhosdhfosdhfosdhfosd|_________________________________|||||\n");
+// 				////printf("ifowhfisdhofhsdoifhsdofhsdofhosdhfosdhfosdhfosd|_________________________________|||||\n");
 // 				if (g_op[k].args_num - count_arg + 1 == 1)
 // 				{
 // 					champ->labels[champ->l_size].arg_now = 1;
@@ -591,7 +591,7 @@
 // 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 // 			{
 // 				//error не тот символ
-// 				printf("не тот символ\n");
+// 				//printf("не тот символ\n");
 // 				free_all(*champ);
 // 				exit (0);
 // 			}
@@ -613,8 +613,8 @@
 // 			// if (line[i - 1] == '-' || i == 1)
 // 			// {
 // 			// 	// error Невалидный аргумент
-// 			// 	printf("Невалидный аргумент\n");
-// 			// 	exit(0);
+// 			// 	//printf("Невалидный аргумент\n");
+// 			// 	exit(-1);
 // 			// }
 // 			if (g_op[k].args_num - count_arg + 1 == 1)
 // 				champ->labels[champ->l_size].range_1 = get_dir_ind_arg_val(champ, line, &i);
@@ -626,9 +626,9 @@
 // 		else
 // 		{
 // 			//error
-// 			printf("не валидный аргумент\n");
+// 			//printf("не валидный аргумент\n");
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 		
 // 	}
@@ -659,8 +659,8 @@
 // 		// if (line[i - 1] == '-' && i == 1)
 // 		// {
 // 		// 	// error Невалидный аргумент2
-// 		// 	printf("Невалидный аргумент2\n");
-// 		// 	exit(0);
+// 		// 	//printf("Невалидный аргумент2\n");
+// 		// 	exit(-1);
 // 		// }
 // 	}
 // 	else if (line[i] == LABEL_CHAR)
@@ -708,7 +708,7 @@
 // 			if (line[i] != ',' && line[i] != '\t' && line[i] != '\0')
 // 			{
 // 				//error не тот символ2
-// 				printf("не тот символ2\n");
+// 				//printf("не тот символ2\n");
 // 				free_all(*champ);
 // 				exit (0);
 // 			}
@@ -726,7 +726,7 @@
 // 	int i;
 // 	int count_arg;
 // 	i = 0;
-// //printf("line[i] - %c\n", line[0]);
+// ////printf("line[i] - %c\n", line[0]);
 // 	while (ft_strcmp(g_op[i].name, champ->labels[champ->l_size].cmd_name) != 0)
 // 	{
 // 		i++;
@@ -756,14 +756,14 @@
 // 			if (comma == 1)
 // 			{
 // 				// error	Нет запятой
-// 				printf("Нет запятой");
+// 				//printf("Нет запятой");
 // 				free_all(*champ);
-// 				exit(0);
+// 				exit(-1);
 // 			}
 // 			comma = 1;
-// 			//printf("ya tut %c\n", line[i]);
+// 			////printf("ya tut %c\n", line[i]);
 // 			i += switch_args(&line[i], count_arg, champ);
-// 			//printf("%c --------- %d\n", line[i], comma);
+// 			////printf("%c --------- %d\n", line[i], comma);
 // 			count_arg--;
 // 		}
 // 		else if (line[i] == SEPARATOR_CHAR)
@@ -771,9 +771,9 @@
 // 			if (comma == 0)
 // 			{
 // 				// error	Лишняя запятая
-// 				printf("Лишняя запятая");
+// 				//printf("Лишняя запятая");
 // 				free_all(*champ);
-// 				exit(0);
+// 				exit(-1);
 // 			}
 // 			comma = 0;
 // 			i++;
@@ -783,8 +783,8 @@
 // 			if (count_arg != 0)
 // 			{
 // 				//error не все аргументы были найдены
-// 				//printf("не все аргументы были найдены");
-// 				exit(0);
+// 				////printf("не все аргументы были найдены");
+// 				exit(-1);
 // 			}
 // 			increase_array(champ);
 // 			return ;
@@ -792,18 +792,18 @@
 // 		else if (line[i] != ' ' && line[i] != '\t' && line[i] != '\0')
 // 		{
 // 			//error non-valid symbol
-// 			printf("non-valid symbol\n");
+// 			//printf("non-valid symbol\n");
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 		
 // 	}
 // 	if (comma == 0 || count_arg != 0)
 // 	{
 // 		// error	Лишняя запятая или не все аргументы были найдены
-// 		printf("Лишняя запятая или не все аргументы были найдены");
+// 		//printf("Лишняя запятая или не все аргументы были найдены");
 // 		free_all(*champ);
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	// champ->l_size++; // add____`
 // 	//add_range(champ);
@@ -818,19 +818,19 @@
 // 	i = 0;
 // 	while (line[i] == ' ' || line[i] == '\t')
 // 		i++;
-// 	//printf("fsdf\n");
+// 	////printf("fsdf\n");
 // 	name_com = check_name_com(&line[i], champ);
-// 	//printf("fsdf2\n");
+// 	////printf("fsdf2\n");
 // 	if (name_com == NULL)
-// 	{//printf("fsdf3\n");
+// 	{////printf("fsdf3\n");
 // 		return (0);
 // 	}
-// 	// printf("sdsdsd\n");
+// 	// //printf("sdsdsd\n");
 // 	ft_strcpy(champ->labels[champ->l_size].cmd_name, name_com);
 // 	// for (int q = 0; q < ft_strlen(name_com); q++) {
 // 		// champ->labels[champ->l_size].cmd_name[q] = name_com[q];
 // 	// }
-// 	//printf("%s _____________________\n", name_com);
+// 	////printf("%s _____________________\n", name_com);
 // 	free(name_com);
 // 	convert_command(&line[i + ft_strlen(name_com)], champ);
 // 	return (1);
@@ -843,7 +843,7 @@
 // 	t_l *new;
 
 // 	i = 0;
-// 	//printf("HEY\n");
+// 	////printf("HEY\n");
 // 	while (line[i] == ' ' || line[i] == '\t')
 // 		i++;
 // 	len = i;
@@ -855,15 +855,15 @@
 // 		champ->labels[champ->l_size].is_label = 1;
 // 		if (champ->labels[champ->l_size].names == NULL)
 // 		{
-// 			//printf("hey\n");
+// 			////printf("hey\n");
 // 			new = malloc(sizeof(t_l));
 // 			ft_strncpy(new->name, &line[len], i - len);
 // 			new->name[i - len] = '\0';
-// 			// printf("%s - name\n", new->name);
-// 			//printf("hey\n");
+// 			// //printf("%s - name\n", new->name);
+// 			////printf("hey\n");
 // 			new->next = NULL;
 // 			champ->labels[champ->l_size].names = new;
-// 			//printf("%s - LABEL\n", champ->labels[champ->l_size].names->name);
+// 			////printf("%s - LABEL\n", champ->labels[champ->l_size].names->name);
 // 			champ->labels[champ->l_size].start = new;
 // 		}
 // 		else
@@ -884,7 +884,7 @@
 // 	i++;
 // 	while (line[i] == ' ' || line[i] == '\t')
 // 		i++;
-// 	// printf("%c _!_!_\n", line[i]);
+// 	// //printf("%c _!_!_\n", line[i]);
 // 	if (line[i] == '\0'|| line[i] == COMMENT_CHAR)
 // 		return (1);
 // 	else if (is_command(&line[i], champ))
@@ -895,8 +895,8 @@
 // 	{
 // 		//error
 // 		free_all(*champ);
-// 		printf("если это не команда\n");
-// 		exit(0);
+// 		//printf("если это не команда\n");
+// 		exit(-1);
 // 	}
 // }
 
@@ -944,17 +944,17 @@
 // 	if (arg == 1)
 // 	{
 // 		champ->labels[k].range_1 = sum;
-// 		// printf("SUM - %d\n", sum);
+// 		// //printf("SUM - %d\n", sum);
 // 	}
 // 	else if (arg == 2)
 // 	{
 // 		champ->labels[k].range_2 = sum;
-// 		// printf("SUM - %d\n", sum);
+// 		// //printf("SUM - %d\n", sum);
 // 	}
 // 	else if (arg == 3)
 // 	{
 // 		champ->labels[k].range_3 = sum;
-// 		// printf("SUM - %d\n", sum);
+// 		// //printf("SUM - %d\n", sum);
 // 	}
 // }
 
@@ -972,8 +972,8 @@
 // 			else
 // 			{
 // 				/* else Не нашел метку */
-// 				printf("Не нашел метку1\n");
-// 				exit(0);
+// 				//printf("Не нашел метку1\n");
+// 				exit(-1);
 // 				// sum_range(champ, champ->labels[i].l_name_1, 1, i);
 // 			}
 // 		}
@@ -984,10 +984,10 @@
 // 			else
 // 			{
 // 				//  else Не нашел метку */
-// 				printf("Не нашел метку2 %s\n", champ->labels[i].l_name_2);
+// 				//printf("Не нашел метку2 %s\n", champ->labels[i].l_name_2);
 // 				//sum_range(champ, champ->labels[i].l_name_2, 2, i);
 // 				// champ->labels[i].range_2 = 153;
-// 				exit(0);
+// 				exit(-1);
 // 			}
 // 		}
 // 		if (champ->labels[i].l_name_3[0] && champ->labels[i].range_3 == 0)
@@ -997,8 +997,8 @@
 // 			else
 // 			{
 // 				/* else Не нашел метку */
-// 				printf("Не нашел метку3\n");
-// 				exit(0);
+// 				//printf("Не нашел метку3\n");
+// 				exit(-1);
 // 				// sum_range(champ, champ->labels[i].l_name_3, 3, i);
 // 			}
 // 		}
@@ -1013,7 +1013,7 @@
 
 // 	while ((ans = get_next_line(fd, &line)) > 0)
 // 	{
-// 		//printf("%s\n", line);
+// 		////printf("%s\n", line);
 // 		if (is_comment(line))
 // 			;
 // 		else if (is_command(line, champ))
@@ -1024,8 +1024,8 @@
 // 		{
 // 			// ERROR nevalidnyi vvod
 // 			free_all(*champ);
-// 			printf("nevalidnyi vvod\n");
-// 			exit(0);
+// 			//printf("nevalidnyi vvod\n");
+// 			exit(-1);
 // 		}
 // 		free(line);
 // 	}
@@ -1050,7 +1050,7 @@
 // 	else
 // 	{
 // 		//error неправильное название файла
-// 		//printf("неправильное название файла\n");
+// 		////printf("неправильное название файла\n");
 // 		exit (0);
 // 	}
 // 	close(fd);
@@ -1061,7 +1061,7 @@
 // 	if (!(buff[length] == '\0' && buff[length-1] == '\n'))
 // 	{
 // 		//error
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // }
 
@@ -1073,12 +1073,12 @@
 // 	if (!basename)
 // 	{
 // 		//error
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	if (!(filename = ft_strjoin(basename, new)))
 // 	{
 // 		//error
-// 		exit(0);
+// 		exit(-1);
 // 	}
 // 	ft_strdel(&basename);
 // 	return (filename);
@@ -1096,7 +1096,7 @@
 // 		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + champ->labels[i].cmd_type + 1;
 // 		i++;
 // 	}
-// 	// printf("SUM - %d\n", sum);
+// 	// //printf("SUM - %d\n", sum);
 // 	return (sum);
 // }
 
@@ -1195,8 +1195,8 @@
 // 	}
 // 	ret = ret << 2;
 // 	return (ret);
-// 	// printf("%x - HEX %d - DEC\n", ret, ret);
-// 	// exit(0);
+// 	// //printf("%x - HEX %d - DEC\n", ret, ret);
+// 	// exit(-1);
 // }
 
 // void	check_range_sign(t_champ *champ, int i)
@@ -1221,7 +1221,7 @@
 // 	else if (champ->labels[i].arg_2 == 4)
 // 	{
 // 		write_4_byte(champ, champ->labels[i].range_2);
-// 		// printf("%x %d -RANGE_2\n", champ->labels[i].range_2, champ->labels[i].range_2);
+// 		// //printf("%x %d -RANGE_2\n", champ->labels[i].range_2, champ->labels[i].range_2);
 // 	}
 // 	if (champ->labels[i].arg_3 == 1)
 // 		write_1_byte(champ, champ->labels[i].range_3);
@@ -1241,15 +1241,15 @@
 // 	while (i < champ->l_size)
 // 	{
 // 		champ->exec_code[champ->ind_wr++] = champ->labels[i].cmd_code;
-// 		// printf("%s - name\n", champ->labels[i].cmd_name);
+// 		// //printf("%s - name\n", champ->labels[i].cmd_name);
 // 		if (champ->labels[i].cmd_type == 1)
 // 			champ->exec_code[champ->ind_wr++] = count_code_type_arg(champ, i);
 // 		process_args(champ, i);
 // 		// for (;start < champ->ind_wr; start++)
 // 		// {
-// 		// 	printf("%02x ", champ->exec_code[start]);
+// 		// 	//printf("%02x ", champ->exec_code[start]);
 // 		// }
-// 		// printf("\n");
+// 		// //printf("\n");
 // 		i++;
 // 	}
 // }
@@ -1270,14 +1270,14 @@
 // 	i = 0;
 // 	for (; i < exec_size; i++)
 // 	{
-// 		printf("%02x", champ->exec_code[i]);
+// 		//printf("%02x", champ->exec_code[i]);
 // 		if (i%2 == 1)
-// 			printf(" ");
+// 			//printf(" ");
 // 		if ((i+1)%16 == 0)
-// 			printf("\n");
+// 			//printf("\n");
 // 	}
-// 	printf("\n");
-// 	// printf("\n%d | code_size - %d\n", i, champ->code_size);
+// 	//printf("\n");
+// 	// //printf("\n%d | code_size - %d\n", i, champ->code_size);
 // }
 
 // void	check_type_arg(t_champ  *champ)
@@ -1296,25 +1296,25 @@
 // 		if ((g_op[j].args_types[0] & champ->labels[i].type_1) == 0)
 // 		{
 // 			//error
-// 			printf("error1, %s\n", g_op[j].name);
+// 			//printf("error1, %s\n", g_op[j].name);
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 // 		if ((g_op[j].args_types[1] & champ->labels[i].type_2) == 0  \
 // 		&& (g_op[j].args_types[1] || champ->labels[i].type_2))
 // 		{
 // 			//error
-// 			printf("error2, %s\n", g_op[j].name);
+// 			//printf("error2, %s\n", g_op[j].name);
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 // 		if ((g_op[j].args_types[2] & champ->labels[i].type_3) == 0  \
 // 		&& (g_op[j].args_types[2] || champ->labels[i].type_3))
 // 		{
 // 			//error
-// 			printf("error3, %d, %d\n", g_op[j].args_types[2], champ->labels[i].type_3);
+// 			//printf("error3, %d, %d\n", g_op[j].args_types[2], champ->labels[i].type_3);
 // 			free_all(*champ);
-// 			exit(0);
+// 			exit(-1);
 // 		}
 // 		i++;
 // 	}
@@ -1333,25 +1333,35 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
+		// //printf("hey\n");
 		is_file_valid(argv[1], &champ);
+		// //printf("hey\n");
 		check_type_arg(&champ);
 	}
+	/*
+	* ВЫНЕСТИ В ДРУГУЮ ФУНКЦИЮ!!!!!!!!!!!!!!
+	*/
+	if (champ.l_size == 0)
+		{
+			// ERROR
+			exit(-1);
+		}
 	char *file_name = change_extension(argv[1], ".s", ".cor");
 	fd = open(file_name, O_CREAT|O_WRONLY|O_TRUNC, 0777);
 	to_bin_code(&champ, fd);
 	write(1, "Writing output program to ", 26);
 	write(1, file_name, ft_strlen(file_name));
 	write(1, "\n", 1);
-	// printf("\n\n\n");
-	// printf("%s - NAME\n", champ.name);
-	// printf("%s - COMMENT\n", champ.comment);
+	// //printf("\n\n\n");
+	// //printf("%s - NAME\n", champ.name);
+	// //printf("%s - COMMENT\n", champ.comment);
 	// for (int i = 0; i < champ.l_size + 1; i++)
 	// {
-	// 	printf("%s - CMD_NAME, %x - CMD_CODE, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3, %d - T1, %d - T2, %d - T3\n", champ.labels[i].cmd_name, \
+	// 	//printf("%s - CMD_NAME, %x - CMD_CODE, %s - NAME_LABEL, %d - ARG_1, %d - ARG_2, %d - ARG_3, %d - CMD_TYPE, %s - L_NAME_1,  %s - L_NAME_2, %d - RANGE_1, %d - RANGE_2, %d - RANGE_3, %d - T1, %d - T2, %d - T3\n", champ.labels[i].cmd_name, \
 	// 					champ.labels[i].cmd_code ,champ.labels[i].names->name, champ.labels[i].arg_1, champ.labels[i].arg_2, champ.labels[i].arg_3, \
 	// 					champ.labels[i].cmd_type, champ.labels[i].l_name_1, champ.labels[i].l_name_2, champ.labels[i].range_1, champ.labels[i].range_2, champ.labels[i].range_3, champ.labels[i].type_1, champ.labels[i].type_2, champ.labels[i].type_3);
 	// }
-	// printf("fdsafa\n");
+	// //printf("fdsafa\n");
 	free_all(champ);
 	free(file_name);
 	free(champ.exec_code);

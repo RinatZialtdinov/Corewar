@@ -36,7 +36,7 @@ void	process_args(t_champ *champ, int i)
 	else if (champ->labels[i].arg_2 == 4)
 	{
 		write_4_byte(champ, champ->labels[i].range_2);
-		// printf("%x %d -RANGE_2\n", champ->labels[i].range_2, champ->labels[i].range_2);
+		// //printf("%x %d -RANGE_2\n", champ->labels[i].range_2, champ->labels[i].range_2);
 	}
 	if (champ->labels[i].arg_3 == 1)
 		write_1_byte(champ, champ->labels[i].range_3);
@@ -56,15 +56,15 @@ void	write_exec_code(t_champ *champ)
 	while (i < champ->l_size)
 	{
 		champ->exec_code[champ->ind_wr++] = champ->labels[i].cmd_code;
-		// printf("%s - name\n", champ->labels[i].cmd_name);
+		// //printf("%s - name\n", champ->labels[i].cmd_name);
 		if (champ->labels[i].cmd_type == 1)
 			champ->exec_code[champ->ind_wr++] = count_code_type_arg(champ, i);
 		process_args(champ, i);
 		// for (;start < champ->ind_wr; start++)
 		// {
-		// 	printf("%02x ", champ->exec_code[start]);
+		// 	//printf("%02x ", champ->exec_code[start]);
 		// }
-		// printf("\n");
+		// //printf("\n");
 		i++;
 	}
 }
@@ -83,15 +83,15 @@ void	to_bin_code(t_champ *champ, int fd)
 	write_bin_head(champ);
 	write_exec_code(champ);
 	write(fd, champ->exec_code, exec_size);
-	// i = 0;
+	i = 0;
 	// for (; i < exec_size; i++)
 	// {
-	// 	printf("%02x", champ->exec_code[i]);
+	// 	//printf("%02x", champ->exec_code[i]);
 	// 	// if (i%2 == 1)
-	// 	// 	printf(" ");
+	// 	// 	//printf(" ");
 	// 	if ((i+1)%30 == 0)
-	// 		printf("\n");
+	// 		//printf("\n");
 	// }
-	// printf("\n");
-	// printf("\n%d | code_size - %d\n", i, champ->code_size);
+	// //printf("\n");
+	// //printf("\n%d | code_size - %d\n", i, champ->code_size);
 }

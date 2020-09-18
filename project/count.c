@@ -12,7 +12,7 @@ int		count_code_size(t_champ *champ)
 		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + champ->labels[i].cmd_type + 1;
 		i++;
 	}
-	// printf("SUM - %d\n", sum);
+	// //printf("SUM - %d\n", sum);
 	return (sum);
 }
 
@@ -47,6 +47,6 @@ unsigned char	count_code_type_arg(t_champ *champ, int i)
 	}
 	ret = ret << 2;
 	return (ret);
-	// printf("%x - HEX %d - DEC\n", ret, ret);
-	// exit(0);
+	// //printf("%x - HEX %d - DEC\n", ret, ret);
+	// exit(-1);
 }

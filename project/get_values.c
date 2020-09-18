@@ -13,8 +13,9 @@ int	get_reg_arg_val(t_champ *champ, char *line, int *i)
 	if (ft_atoi(&line[1]) > REG_NUMBER || *i == 1 || ft_atoi(&line[1]) < 1)
 	{
 		// error Невалидный аргумент
+		//printf("Невалидный аргумент1\n");
 		free_all(*champ);
-		exit(0);
+		exit(-1);
 	}
 	return (ft_atoi(&line[1]));
 }
@@ -31,9 +32,9 @@ int	get_dir_ind_arg_val(t_champ *champ, char *line, int *i)
 	if (line[*i - 1] == '-' && *i == 1)
 	{
 		// error Невалидный аргумент2
-		printf("Невалидный аргумент2\n");
+		//printf("Невалидный аргумент2\n");
 		free_all(*champ);
-		exit(0);
+		exit(-1);
 	}
 	return (ft_atoi(&line[start]));
 }

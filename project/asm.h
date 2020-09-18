@@ -107,6 +107,7 @@ typedef struct  s_champ
 	int     code_size;
 	unsigned char    *exec_code;
 	int		ind_wr;
+	int		is_end_comment;
 
 	int		new_com;
 	int		l_size;

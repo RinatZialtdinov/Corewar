@@ -16,7 +16,7 @@ int	is_comment(char *line)
 
 void	skip_spaces(int i, char *line)
 {
-	//printf("%c\n", line[i]);
+	////printf("%c\n", line[i]);
 	while(line[i] != '\0')
 	{
 		if (line[i] == COMMENT_CHAR)
@@ -24,8 +24,8 @@ void	skip_spaces(int i, char *line)
 		if (line[i] != ' ' && line[i] != '\t')
 		{
 			//error невалидная строка
-			printf("невалидная строка\n");
-			exit(0);
+			//printf("невалидная строка\n");
+			exit(-1);
 		}
 		i++;
 	}
@@ -50,49 +50,69 @@ int	is_main_comment(char **line, int fd, t_champ *champ, int mc)
 	if (mc == 1)
 	{
 		//error	два комментария
-		printf("два комментария\n");
+		//printf("два комментария\n");
 		free_all(*champ);
-		exit(0);
+		exit(-1);
 	}
 	while ((*line)[i] != '"' && (*line)[i] != '\0' && (*line)[i] != COMMENT_CHAR)
 		i++;
 	if ((*line)[i] != '"')
 	{
 		//error не нашли имя
-		printf("не нашли имя\n");
+		//printf("не нашли имя\n");
 		free_all(*champ);
-		exit(0);
+		exit(-1);
 	}
 	i++;
 	while ((*line)[i] != '"')
 	{
-		champ->comment[j] = (*line)[i];
-		i++;
-		j++;
-		if (j > COMMENT_LENGTH)
+		// //printf("hey\n");
+		// champ->comment[j] = (*line)[i];
+		// i++;
+		// j++;
+		if (j >= COMMENT_LENGTH)
 		{
 			//error длинное имя
-			printf("длинное имя\n");
+			// //printf("длинный коммент\n");
+			// write(0, "FD\n", 3);
 			free_all(*champ);
-			exit(0);
+			exit(-1);
 		}
 		else if ((*line)[i] == '\0')
 		{
 			free(*line);
-			if ((len_const = get_next_line(fd, line)) > 0)
+			champ->comment[j] = '\n';
+			j++;
+			while ((len_const = get_next_line(fd, line)) > 0)
 			{
 				i = 0;
+				if ((*line)[0] == '\0')
+				{
+					champ->comment[j] = '\n';
+					j++;
+				}
+				else
+				{
+					break ;
+				}
 			}
-			else
+			if (len_const <= 0)
 			{
 				//error неполный файл или невалидный
-				printf("неполный файл или невалидный\n");
+				//printf("неполный файл или невалидный\n");
 				free_all(*champ);
-				exit(0);
+				exit(-1);
 			}
 		}
+		// i++;
+		if ((*line)[i] == '"')
+			break ;
+		champ->comment[j] = (*line)[i];
+		i++;
+		j++;
+		// champ->comment[j] = (*line)[i];
 	}
-	//printf("hey\n");
+	////printf("hey\n");
 	skip_spaces(i + 1, *line);
 	return (1);
 }
