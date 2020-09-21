@@ -114,6 +114,26 @@ typedef struct  s_champ
 	t_label	*labels;
 }               t_champ;
 
+typedef struct s_dis
+{
+	char        *cmd_name;
+	unsigned int         arg_type;
+	unsigned char        c;
+	unsigned int         value;
+	unsigned int         arg1;
+	unsigned int         arg2;
+	unsigned int         arg3;
+	unsigned int         dir_size;
+}               t_dis;
+
+char		*ft_itoa_1(int n);
+void		write_arg(int wr_fd, t_dis *dis, int rd_fd, int arg);
+void		check_arg_type(t_dis *dis, int rd_fd);
+char		*find_cmd(t_dis *dis);
+void		write_head_elem(char *elem, int cons, int wr_fd, int rd_fd);
+void		disasm_header(int wr_fd, int rd_fd);
+void		disasm_cmd(int wr_fd, int rd_fd);
+
 void	free_all(t_champ champ);
 int	switch_args(char *line, int count_arg, t_champ *champ);
 void	increase_array(t_champ *champ);
