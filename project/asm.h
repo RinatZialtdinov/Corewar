@@ -97,7 +97,7 @@ typedef struct  s_label
 	int		type_1; // тип аргумента (1 - T_REG, 2 - T_DIR, 3 - T_IND)
 	int		type_2;
 	int		type_3;
-	int 	arg_now; 		
+	int 	arg_now;
 }               t_label;
 
 typedef struct  s_champ
@@ -112,6 +112,8 @@ typedef struct  s_champ
 	int		new_com;
 	int		l_size;
 	t_label	*labels;
+
+	int		len;
 }               t_champ;
 
 void	free_all(t_champ champ);
@@ -124,7 +126,7 @@ int	is_comment(char *line);
 int	is_name(char **line, int fd, t_champ *champ, int name);
 int	is_main_comment(char **line, int fd, t_champ *champ, int mc);
 int	is_command_or_not(char *line, t_champ *champ);
-int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg);
+int		find_lab_aft_cmd(t_champ *champ, char *l_name, int start, int arg);
 int	is_comment(char *line);
 int		is_label(char *line, t_champ *champ);
 void	write_4_byte(t_champ *champ, unsigned int to_write);

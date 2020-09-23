@@ -1,6 +1,16 @@
-// #include "asm_op.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/23 12:25:15 by damerica          #+#    #+#             */
+/*   Updated: 2020/09/23 12:25:18 by damerica         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
-// #include "libft/libft.h"
 
 void	free_label(t_label label)
 {
@@ -27,6 +37,30 @@ void	free_all(t_champ champ)
 		i++;
 	}
 	free(champ.labels);
+	exit(-1);
+}
+
+void	zeroing_values(t_champ *champ, int i, int j)
+{
+	while (j != 256)
+	{
+		champ->labels[i].l_name_1[j] = '\0';
+		champ->labels[i].l_name_2[j] = '\0';
+		champ->labels[i].l_name_3[j] = '\0';
+		j++;
+	}
+	j = 0;
+	while (j != 6)
+	{
+		champ->labels[i].cmd_name[j] = '\0';
+		j++;
+	}
+	champ->labels[i].is_label = 0;
+	champ->labels[i].cmd_type = 0;
+	champ->labels[i].range_1 = 0;
+	champ->labels[i].range_2 = 0;
+	champ->labels[i].range_3 = 0;
+	champ->labels[i].arg_now = 0;
 }
 
 void	init_array(t_champ *champ)
@@ -47,25 +81,7 @@ void	init_array(t_champ *champ)
 		champ->labels[i].type_1 = 0;
 		champ->labels[i].type_2 = 0;
 		champ->labels[i].type_3 = 0;
-		while (j != 256)
-		{
-			champ->labels[i].l_name_1[j] = '\0';
-			champ->labels[i].l_name_2[j] = '\0';
-			champ->labels[i].l_name_3[j] = '\0';
-			j++;
-		}
-		j = 0;
-		while (j != 6)
-		{
-			champ->labels[i].cmd_name[j] = '\0';
-			j++;
-		}
-		champ->labels[i].is_label = 0;
-		champ->labels[i].cmd_type = 0;
-		champ->labels[i].range_1 = 0;
-		champ->labels[i].range_2 = 0;
-		champ->labels[i].range_3 = 0;
-		champ->labels[i].arg_now = 0;
+		zeroing_values(champ, i, j);
 		i++;
 	}
 }
@@ -85,25 +101,7 @@ void	increase_array(t_champ *champ)
 			champ->labels[i].arg_1 = 0;
 			champ->labels[i].arg_2 = 0;
 			champ->labels[i].arg_3 = 0;
-			while (j != 256)
-			{
-				// champ->labels[i].name[j] = '\0';
-				champ->labels[i].l_name_1[j] = '\0';
-				champ->labels[i].l_name_2[j] = '\0';
-				champ->labels[i].l_name_3[j] = '\0';
-				j++;
-			}
-			j = 0;
-			while (j != 6)
-			{
-				champ->labels[i].cmd_name[j] = '\0';
-			}
-			champ->labels[i].is_label = 0;
-			champ->labels[i].cmd_type = 0;
-			champ->labels[i].range_1 = 0;
-			champ->labels[i].range_2 = 0;
-			champ->labels[i].range_3 = 0;
-			champ->labels[i].arg_now = 0;
+			zeroing_values(champ, i, j);
 			i++;
 		}
 	}

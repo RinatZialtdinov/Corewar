@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 15:20:56 by damerica          #+#    #+#             */
-/*   Updated: 2020/09/01 15:20:58 by damerica         ###   ########.fr       */
+/*   Created: 2020/09/23 12:26:09 by damerica          #+#    #+#             */
+/*   Updated: 2020/09/23 12:26:10 by damerica         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -900,7 +900,7 @@
 // 	}
 // }
 
-// int		find_label_after_cmd(t_champ *champ, char *l_name, int start, int arg)
+// int		find_lab_aft_cmd(t_champ *champ, char *l_name, int start, int arg)
 // {
 // 	int i;
 // 	int sum;
@@ -967,7 +967,7 @@
 // 	{
 // 		if (champ->labels[i].l_name_1[0] && champ->labels[i].range_1 == 0)
 // 		{
-// 			if (find_label_after_cmd(champ, champ->labels[i].l_name_1, i, 1))
+// 			if (find_lab_aft_cmd(champ, champ->labels[i].l_name_1, i, 1))
 // 				;
 // 			else
 // 			{
@@ -979,7 +979,7 @@
 // 		}
 // 		if (champ->labels[i].l_name_2[0] && champ->labels[i].range_2 == 0)
 // 		{
-// 			if (find_label_after_cmd(champ, champ->labels[i].l_name_2, i, 2))
+// 			if (find_lab_aft_cmd(champ, champ->labels[i].l_name_2, i, 2))
 // 				;
 // 			else
 // 			{
@@ -992,7 +992,7 @@
 // 		}
 // 		if (champ->labels[i].l_name_3[0] && champ->labels[i].range_3 == 0)
 // 		{
-// 			if (find_label_after_cmd(champ, champ->labels[i].l_name_3, i, 3))
+// 			if (find_lab_aft_cmd(champ, champ->labels[i].l_name_3, i, 3))
 // 				;
 // 			else
 // 			{
@@ -1342,10 +1342,10 @@ int	main(int argc, char **argv)
 	* ВЫНЕСТИ В ДРУГУЮ ФУНКЦИЮ!!!!!!!!!!!!!!
 	*/
 	if (champ.l_size == 0)
-		{
-			// ERROR
-			exit(-1);
-		}
+	{
+		// ERROR
+		exit(-1);
+	}
 	char *file_name = change_extension(argv[1], ".s", ".cor");
 	fd = open(file_name, O_CREAT|O_WRONLY|O_TRUNC, 0777);
 	to_bin_code(&champ, fd);

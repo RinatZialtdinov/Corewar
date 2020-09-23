@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   count.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/23 12:24:54 by damerica          #+#    #+#             */
+/*   Updated: 2020/09/23 12:24:57 by damerica         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
-int		count_code_size(t_champ *champ)
+int				count_code_size(t_champ *champ)
 {
 	int i;
 	int sum;
@@ -9,10 +21,10 @@ int		count_code_size(t_champ *champ)
 	i = 0;
 	while (i != champ->l_size)
 	{
-		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 + champ->labels[i].arg_3 + champ->labels[i].cmd_type + 1;
+		sum += champ->labels[i].arg_1 + champ->labels[i].arg_2 +\
+		champ->labels[i].arg_3 + champ->labels[i].cmd_type + 1;
 		i++;
 	}
-	// //printf("SUM - %d\n", sum);
 	return (sum);
 }
 
@@ -42,11 +54,7 @@ unsigned char	count_code_type_arg(t_champ *champ, int i)
 	else if (champ->labels[i].type_3 == T_IND)
 		ret += 3;
 	else
-	{
 		ret += 0;
-	}
 	ret = ret << 2;
 	return (ret);
-	// //printf("%x - HEX %d - DEC\n", ret, ret);
-	// exit(-1);
 }
