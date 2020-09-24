@@ -12,7 +12,33 @@
 
 #include "asm.h"
 
-int	is_name(char **line, int fd, t_champ *champ, int name)
+void	while_is_name(char **line, int *i, t_champ *champ, int *j)
+{
+	int ans;
+
+	if ((*line)[(*i)++] != '"')
+		free_all(*champ);
+	while ((*line)[*i] != '"')
+	{
+		if (*j >= PROG_NAME_LENGTH)
+			free_all(*champ);
+		else if ((*line)[*i] == '\0')
+		{
+			free(*line);
+			champ->name[*j] = '\n';
+			(*j)++;
+			if ((ans = get_next_line(champ->fd, line)) > 0)
+				*i = 0;
+			else
+				free_all(*champ);
+		}
+		champ->name[*j] = (*line)[*i];
+		(*i)++;
+		(*j)++;
+	}
+}
+
+int		is_name(char **line, int fd, t_champ *champ, int name)
 {
 	int len_const;
 	int i;
@@ -29,34 +55,15 @@ int	is_name(char **line, int fd, t_champ *champ, int name)
 		free_all(*champ);
 	i = len_const;
 	while ((*line)[i] != '"' && (*line)[i] != '\0' &&\
-	(*line)[i] != COMMENT_CHAR)
+	(*line)[i] != COMMENT_CHAR && (*line)[i] != ALT_COMMENT)
 		i++;
-	if ((*line)[i] != '"')
-		free_all(*champ);
-	i++;
-	while ((*line)[i] != '"')
-	{
-		if (j >= PROG_NAME_LENGTH)
-			free_all(*champ);
-		else if ((*line)[i] == '\0')
-		{
-			free(*line);
-			champ->name[j] = '\n';
-			j++;
-			if ((len_const = get_next_line(fd, line)) > 0)
-				i = 0;
-			else
-				free_all(*champ);
-		}
-		champ->name[j] = (*line)[i];
-		i++;
-		j++;
-	}
+	champ->fd = fd;
+	while_is_name(line, &i, champ, &j);
 	skip_spaces(i + 1, *line);
 	return (1);
 }
 
-int	is_command_or_not(char *line, t_champ *champ)
+int		is_command_or_not(char *line, t_champ *champ)
 {
 	int		i;
 	char	*name_com;

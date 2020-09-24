@@ -19,7 +19,7 @@ int		is_comment(char *line)
 	i = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	if (line[i] == COMMENT_CHAR)
+	if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT)
 		return (1);
 	else if (line[i] == '\0')
 		return (1);
@@ -30,7 +30,7 @@ void	skip_spaces(int i, char *line)
 {
 	while (line[i] != '\0')
 	{
-		if (line[i] == COMMENT_CHAR)
+		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT)
 			break ;
 		if (line[i] != ' ' && line[i] != '\t')
 		{
@@ -40,56 +40,62 @@ void	skip_spaces(int i, char *line)
 	}
 }
 
+void	while_in_m_comment(t_champ *champ, char **line, int *i, int *j)
+{
+	int ans;
+
+	if (*j >= COMMENT_LENGTH)
+		free_all(*champ);
+	else if ((*line)[*i] == '\0')
+	{
+		free(*line);
+		champ->comment[(*j)++] = '\n';
+		while ((ans = get_next_line(champ->fd, line)) > 0)
+		{
+			*i = 0;
+			if ((*line)[0] == '\0')
+				champ->comment[(*j)++] = '\n';
+			else
+				break ;
+		}
+		if (ans <= 0)
+			free_all(*champ);
+	}
+}
+
+void	init_main_com(int *j, int *len_const, int *i, char **line)
+{
+	*j = 0;
+	*len_const = ft_strlen(COMMENT_CMD_STRING);
+	*i = 0;
+	while ((*line)[*i] == ' ' || (*line)[*i] == '\t')
+		(*i)++;
+}
+
 int		is_main_comment(char **line, int fd, t_champ *champ, int mc)
 {
 	int len_const;
 	int i;
 	int j;
 
-	j = 0;
-	len_const = ft_strlen(COMMENT_CMD_STRING);
-	i = 0;
-	while ((*line)[i] == ' ' || (*line)[i] == '\t')
-		i++;
+	init_main_com(&j, &len_const, &i, line);
 	if (ft_strncmp(COMMENT_CMD_STRING, &(*line)[i], len_const))
 		return (0);
 	i = len_const;
 	if (mc == 1)
 		free_all(*champ);
 	while ((*line)[i] != '"' && (*line)[i] != '\0' &&\
-	(*line)[i] != COMMENT_CHAR)
+	(*line)[i] != COMMENT_CHAR && (*line)[i] != ALT_COMMENT)
 		i++;
-	if ((*line)[i] != '"')
+	if ((*line)[i++] != '"')
 		free_all(*champ);
-	i++;
+	champ->fd = fd;
 	while ((*line)[i] != '"')
 	{
-		if (j >= COMMENT_LENGTH)
-			free_all(*champ);
-		else if ((*line)[i] == '\0')
-		{
-			free(*line);
-			champ->comment[j] = '\n';
-			j++;
-			while ((len_const = get_next_line(fd, line)) > 0)
-			{
-				i = 0;
-				if ((*line)[0] == '\0')
-				{
-					champ->comment[j] = '\n';
-					j++;
-				}
-				else
-					break ;
-			}
-			if (len_const <= 0)
-				free_all(*champ);
-		}
+		while_in_m_comment(champ, line, &i, &j);
 		if ((*line)[i] == '"')
 			break ;
-		champ->comment[j] = (*line)[i];
-		i++;
-		j++;
+		champ->comment[j++] = (*line)[i++];
 	}
 	skip_spaces(i + 1, *line);
 	return (1);

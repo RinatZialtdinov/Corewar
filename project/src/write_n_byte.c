@@ -14,8 +14,8 @@
 
 void	write_4_byte(t_champ *champ, unsigned int to_write)
 {
-	unsigned char buff;
-	int shift;
+	unsigned char	buff;
+	int				shift;
 
 	shift = 24;
 	while (shift >= 0)
@@ -29,8 +29,8 @@ void	write_4_byte(t_champ *champ, unsigned int to_write)
 
 void	write_2_byte(t_champ *champ, unsigned int to_write)
 {
-	unsigned char buff;
-	int shift;
+	unsigned char	buff;
+	int				shift;
 
 	shift = 8;
 	while (shift >= 0)

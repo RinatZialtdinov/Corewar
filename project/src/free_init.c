@@ -78,6 +78,7 @@ void	init_array(t_champ *champ)
 		champ->labels[i].arg_1 = 0;
 		champ->labels[i].arg_2 = 0;
 		champ->labels[i].arg_3 = 0;
+		champ->labels[i].arg_now = 0;
 		champ->labels[i].type_1 = 0;
 		champ->labels[i].type_2 = 0;
 		champ->labels[i].type_3 = 0;
@@ -91,6 +92,7 @@ void	increase_array(t_champ *champ)
 	int i;
 	int j;
 
+	j = 0;
 	if ((champ->l_size + 1) % 250 == 0)
 	{
 		champ->labels = realloc(champ->labels, champ->l_size + 251);
@@ -106,13 +108,4 @@ void	increase_array(t_champ *champ)
 		}
 	}
 	champ->l_size++;
-}
-
-void	zero_exec(t_champ *champ, int exec_size)
-{
-	int i;
-
-	i = 0;
-	while (i < exec_size)
-		champ->exec_code[i++] = 0;
 }

@@ -28,6 +28,18 @@ int				count_code_size(t_champ *champ)
 	return (sum);
 }
 
+int				skip_everything(char *line)
+{
+	int j;
+
+	j = 0;
+	while (line[j] != ' ' && line[j] != '\t' && line[j] != '\0' && \
+	line[j] != ALT_COMMENT && line[j] != COMMENT_CHAR && \
+	line[j] != LABEL_CHAR && line[j] != DIRECT_CHAR)
+		j++;
+	return (j);
+}
+
 unsigned char	count_code_type_arg(t_champ *champ, int i)
 {
 	unsigned char ret;
@@ -53,8 +65,6 @@ unsigned char	count_code_type_arg(t_champ *champ, int i)
 		ret += 2;
 	else if (champ->labels[i].type_3 == T_IND)
 		ret += 3;
-	else
-		ret += 0;
 	ret = ret << 2;
 	return (ret);
 }

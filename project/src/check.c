@@ -24,10 +24,7 @@ char	*check_name_com(char *line, t_champ *champ)
 		i++;
 	end = i;
 	i = 0;
-	j = i;
-	while (line[j] != ' ' && line[j] != '\t' && line[j] != '\0' &&\
-	line[j] != COMMENT_CHAR && line[j] != LABEL_CHAR && line[j] != DIRECT_CHAR)
-		j++;
+	j = skip_everything(line);
 	if (j == end)
 		return (NULL);
 	while (i != 16 && ft_strncmp(&line[end], g_op[i].name, j - end) != 0)

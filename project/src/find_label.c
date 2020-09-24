@@ -54,6 +54,7 @@ void	find_label(t_champ *champ)
 	int		sum;
 
 	sum = 0;
+	str = NULL;
 	if (champ->labels[champ->l_size].arg_now == 1)
 		str = champ->labels[champ->l_size].l_name_1;
 	else if (champ->labels[champ->l_size].arg_now == 2)
