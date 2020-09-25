@@ -26,7 +26,7 @@ int		is_comment(char *line)
 	return (0);
 }
 
-void	skip_spaces(int i, char *line)
+void	skip_spaces(int i, char *line, t_champ *champ)
 {
 	while (line[i] != '\0')
 	{
@@ -34,6 +34,8 @@ void	skip_spaces(int i, char *line)
 			break ;
 		if (line[i] != ' ' && line[i] != '\t')
 		{
+			free(line);
+			free_all(*champ, "Error: invalid file\n");
 			exit(-1);
 		}
 		i++;
@@ -45,7 +47,10 @@ void	while_in_m_comment(t_champ *champ, char **line, int *i, int *j)
 	int ans;
 
 	if (*j >= COMMENT_LENGTH)
+	{
+		free(*line);
 		free_all(*champ, "Error: too long comment\n");
+	}
 	else if ((*line)[*i] == '\0')
 	{
 		free(*line);
@@ -66,13 +71,24 @@ void	while_in_m_comment(t_champ *champ, char **line, int *i, int *j)
 	}
 }
 
-void	init_main_com(int *j, int *len_const, int *i, char **line)
+int		init_main_com(int *len_const, int *i, char **line, t_champ *champ)
 {
-	*j = 0;
 	*len_const = ft_strlen(COMMENT_CMD_STRING);
 	*i = 0;
 	while ((*line)[*i] == ' ' || (*line)[*i] == '\t')
 		(*i)++;
+	if (ft_strncmp(COMMENT_CMD_STRING, &(*line)[*i], *len_const))
+		return (0);
+	*i = *len_const;
+	if (champ->len == 1)
+	{
+		free(*line);
+		free_all(*champ, "Error: two or more main comments\n");
+	}
+	while ((*line)[*i] != '"' && (*line)[*i] != '\0' &&\
+	(*line)[*i] != COMMENT_CHAR && (*line)[*i] != ALT_COMMENT)
+		(*i)++;
+	return (1);
 }
 
 int		is_main_comment(char **line, int fd, t_champ *champ, int mc)
@@ -81,17 +97,15 @@ int		is_main_comment(char **line, int fd, t_champ *champ, int mc)
 	int i;
 	int j;
 
-	init_main_com(&j, &len_const, &i, line);
-	if (ft_strncmp(COMMENT_CMD_STRING, &(*line)[i], len_const))
+	j = 0;
+	champ->len = mc;
+	if (init_main_com(&len_const, &i, line, champ) == 0)
 		return (0);
-	i = len_const;
-	if (mc == 1)
-		free_all(*champ, "Error: two main comments\n");
-	while ((*line)[i] != '"' && (*line)[i] != '\0' &&\
-	(*line)[i] != COMMENT_CHAR && (*line)[i] != ALT_COMMENT)
-		i++;
 	if ((*line)[i++] != '"')
+	{
+		free(*line);
 		free_all(*champ, "Error: no name or comment\n");
+	}
 	champ->fd = fd;
 	while ((*line)[i] != '"')
 	{
@@ -100,6 +114,6 @@ int		is_main_comment(char **line, int fd, t_champ *champ, int mc)
 			break ;
 		champ->comment[j++] = (*line)[i++];
 	}
-	skip_spaces(i + 1, *line);
+	skip_spaces(i + 1, *line, champ);
 	return (1);
 }

@@ -40,8 +40,9 @@ void	free_all(t_champ champ, char *str)
 	if (str)
 	{
 		write(0, str, ft_strlen(str));
+		exit(-1);
 	}
-	exit(-1);
+	exit(0);
 }
 
 void	zeroing_values(t_champ *champ, int i, int j)
@@ -79,6 +80,7 @@ void	init_array(t_champ *champ)
 	while (i != 250)
 	{
 		champ->labels[i].names = NULL;
+		champ->labels[i].start = NULL;
 		champ->labels[i].arg_1 = 0;
 		champ->labels[i].arg_2 = 0;
 		champ->labels[i].arg_3 = 0;

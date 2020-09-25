@@ -1,4 +1,4 @@
-.name		"Mikael Blomkvist"		# Change carry to 1
+.name	"Mikael Blomkvist"		# Change carry to 1
 .comment	"Hans-Erik Wennerstrom is a liar!"# Change carry to 1
 
 # Executable code

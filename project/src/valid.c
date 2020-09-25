@@ -12,6 +12,21 @@
 
 #include "asm.h"
 
+void	header_cases(char **line, t_champ *champ, int *name, int *mc)
+{
+	if (is_comment(*line))
+		;
+	else if (is_name(line, champ->fd, champ, *name))
+		*name = 1;
+	else if (is_main_comment(line, champ->fd, champ, *mc))
+		*mc = 1;
+	else
+	{
+		free(*line);
+		free_all(*champ, "Error: wrong input\n");
+	}
+}
+
 void	is_header_valid(int fd, t_champ *champ)
 {
 	int		name;
@@ -21,21 +36,20 @@ void	is_header_valid(int fd, t_champ *champ)
 
 	name = 0;
 	mc = 0;
+	champ->fd = fd;
 	while ((ans = get_next_line(fd, &line)) > 0)
 	{
-		if (is_comment(line))
-			;
-		else if (is_name(&line, fd, champ, name))
-			name = 1;
-		else if (is_main_comment(&line, fd, champ, mc))
-			mc = 1;
+		header_cases(&line, champ, &name, &mc);
 		if (name == 1 && mc == 1)
 		{
 			free(line);
 			break ;
 		}
 		if (is_command_or_not(line, champ))
+		{
+			free(line);
 			free_all(*champ, "Error: no name or comment\n");
+		}
 		free(line);
 	}
 }
@@ -80,9 +94,7 @@ void	is_file_valid(char *name, t_champ *champ)
 {
 	int		len;
 	int		fd;
-	int		is_ok_to_end;
-	char	buff[2000000];
-	int		length;
+	char	buff;
 
 	len = ft_strlen(name);
 	if (len > 2 && name[len - 2] == '.' && name[len - 1] == 's')
@@ -98,9 +110,9 @@ void	is_file_valid(char *name, t_champ *champ)
 		exit(0);
 	close(fd);
 	fd = open(name, O_RDONLY);
-	is_ok_to_end = 0;
-	length = read(fd, &buff, 2000000);
-	if (length > 2000000 || length < 1 || (!(buff[length] == '\0' &&\
-	buff[length - 1] == '\n') && !champ->is_end_comment))
+	lseek(fd, -1L, 2);
+	read(fd, &buff, 1);
+	if (buff != '\n' && !champ->is_end_comment)
 		free_all(*champ, "Error: no new line at the end\n");
+	close(fd);
 }

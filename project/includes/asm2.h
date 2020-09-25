@@ -124,7 +124,7 @@ void							increase_array(t_champ *champ);
 char							*check_name_com(char *line,\
 t_champ *champ);
 int								is_command(char *line, t_champ *champ);
-void							skip_spaces(int i, char *line);
+void							skip_spaces(int i, char *line, t_champ *champ);
 int								is_comment(char *line);
 int								is_name(char **line, int fd,\
 t_champ *champ, int name);

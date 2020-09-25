@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../includes/asm.h
+libft.h
+../includes/libft.h
+asm2.h
+../includes/asm2.h
+
+../includes/asm2.h
+fcntl.h
+-
+stdlib.h
+-
+libft.h
+../includes/libft.h
+
+../libft/libft.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+fcntl.h
+-
+
+/Users/damerica/Desktop/new_file/project/src/is_name.c
+asm.h
+/Users/damerica/Desktop/new_file/project/src/asm.h
+
