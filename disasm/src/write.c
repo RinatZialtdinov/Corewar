@@ -71,7 +71,7 @@ void		write_arg(int wr_fd, t_dis *dis, int rd_fd, int arg)
 	int		output;
 
 	dis->value = 0;
-    output = 0;
+	output = 0;
 	if (arg == 1)
 	{
 		write(wr_fd, "r", 1);
