@@ -66,6 +66,6 @@ int		is_label(char *line, t_champ *champ)
 	else if (is_command(&line[i], champ))
 		return (1);
 	else
-		free_all(*champ);
+		free_all(*champ, "Error: invalid file\n");
 	return (1);
 }

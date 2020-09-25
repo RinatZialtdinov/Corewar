@@ -92,13 +92,13 @@ void	check_type_arg(t_champ *champ)
 		while (ft_strcmp(g_op[j].name, champ->labels[i].cmd_name) != 0)
 			j++;
 		if ((g_op[j].args_types[0] & champ->labels[i].type_1) == 0)
-			free_all(*champ);
+			free_all(*champ, "Error: no label!\n");
 		if ((g_op[j].args_types[1] & champ->labels[i].type_2) == 0  \
 		&& (g_op[j].args_types[1] || champ->labels[i].type_2))
-			free_all(*champ);
+			free_all(*champ, "Error: no label!\n");
 		if ((g_op[j].args_types[2] & champ->labels[i].type_3) == 0  \
 		&& (g_op[j].args_types[2] || champ->labels[i].type_3))
-			free_all(*champ);
+			free_all(*champ, "Error: no label!\n");
 		i++;
 	}
 }

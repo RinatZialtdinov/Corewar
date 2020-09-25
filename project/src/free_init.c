@@ -26,7 +26,7 @@ void	free_label(t_label label)
 	}
 }
 
-void	free_all(t_champ champ)
+void	free_all(t_champ champ, char *str)
 {
 	int i;
 
@@ -37,6 +37,10 @@ void	free_all(t_champ champ)
 		i++;
 	}
 	free(champ.labels);
+	if (str)
+	{
+		write(0, str, ft_strlen(str));
+	}
 	exit(-1);
 }
 

@@ -16,45 +16,48 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 SRC_DIR = src/
 
-SRCS = check.c \
-	   count.c \
-	   find_label.c \
-	   free_init.c \
-	   is_comment.c \
-	   main.c \
-	   write_bin.c \
-	   get_values.c \
-	   is_label.c \
-   	   switch_args.c \
-	   write_n_byte.c \
-	   is_command.c \
-	   is_name.c \
-  	   valid.c
+SRCS =	    check.c \
+	    count.c \
+	    find_label.c \
+	    free_init.c \
+	    is_comment.c \
+	    main.c \
+	    write_bin.c \
+	    get_values.c \
+	    is_label.c \
+	    switch_args.c \
+	    write_n_byte.c \
+	    is_command.c \
+	    is_name.c \
+	    valid.c
+
+OBJ_DIR = obj/
+
+OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+
 HEADER = -I includes/ -I libft/
 
 ASM_HEADERS_LIST = \
-	op.h\
-	asm.h\
-	asm_op.h\
+		    op.h\
+		    asm.h\
+		    asm_op.h\
 
 ASM_HEADERS = $(addprefix ./includes/, $(ASM_HEADERS_LIST))
-OBJS = $(SRCS:.c=.o)
-OBJ_DIR = obj/
 
 all: lib $(NAME)
 
-$(NAME): $(OBJ_DIR) $(addprefix $(OBJ_DIR), $(OBJS))
-	@gcc $(CFLAGS) $(addprefix $(OBJ_DIR), $(OBJS)) $(HEADER) -L libft $(LIB)libft.a -o $(NAME)
+$(NAME): $(OBJ_DIR) $(OBJS) $(LIB)libft.a
+	@gcc $(CFLAGS) $(OBJS) $(HEADER) -L $(LIB) -lft -o $(NAME)
 	@echo "\033[32mASM COMPILED\033[0m"
 
 lib:
 	@make -C $(LIB)
 
 $(OBJ_DIR):
-	@mkdir obj
+	@mkdir -p obj
 
-$(OBJ_DIR)%.o:$(SRC_DIR)%.c $(ASM_HEADERS)
-	gcc $(CFLAGS) -c $(HEADER) $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	gcc $(CFLAGS) $(HEADER) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -65,3 +68,5 @@ fclean: clean
 	@make -C $(LIB) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re

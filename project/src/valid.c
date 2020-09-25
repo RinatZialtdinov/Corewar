@@ -35,7 +35,7 @@ void	is_header_valid(int fd, t_champ *champ)
 			break ;
 		}
 		if (is_command_or_not(line, champ))
-			free_all(*champ);
+			free_all(*champ, "Error: no name or comment\n");
 		free(line);
 	}
 }
@@ -68,7 +68,7 @@ void	is_body_valid(int fd, t_champ *champ)
 			;
 		else
 		{
-			free_all(*champ);
+			free_all(*champ, "Error: invalid file\n");
 		}
 		is_end_comment(champ, line);
 		free(line);
@@ -100,7 +100,7 @@ void	is_file_valid(char *name, t_champ *champ)
 	fd = open(name, O_RDONLY);
 	is_ok_to_end = 0;
 	length = read(fd, &buff, 2000000);
-	if (!(buff[length] == '\0' && buff[length - 1] == '\n') &&\
-	!champ->is_end_comment)
-		exit(-1);
+	if (length > 2000000 || length < 1 || (!(buff[length] == '\0' &&\
+	buff[length - 1] == '\n') && !champ->is_end_comment))
+		free_all(*champ, "Error: no new line at the end\n");
 }

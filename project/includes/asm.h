@@ -1,164 +1,185 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   asm_op.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/01 16:09:06 by damerica          #+#    #+#             */
-/*   Updated: 2020/09/24 14:26:21 by damerica         ###   ########.fr       */
+/*   Created: 2020/09/01 19:17:12 by damerica          #+#    #+#             */
+/*   Updated: 2020/09/01 19:17:14 by damerica         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
+
 # define ASM_H
 
-# include <fcntl.h>
-# include <stdlib.h>
 # include "libft.h"
-# include "asm_op.h"
+# include "asm2.h"
 
-# define IND_SIZE				2
-# define REG_SIZE				4
-# define DIR_SIZE				REG_SIZE
+/*
+** Operator
+*/
 
-# define REG_CODE				1
-# define DIR_CODE				2
-# define IND_CODE				3
+/*
+** name            — name of operator
+** code            — code of operator
+** args_num        — number of arguments
+** args_types_code — does bytecode of statement with this operator contain code
+**                   of argument's types
+** args_types      — types of arguments
+** t_dir_size      — size of T_DIR argument
+*/
 
-# define MAX_ARGS_NUMBER		4
-# define MAX_PLAYERS			4
-# define MEM_SIZE				(4 * 1024)
-# define IDX_MOD				(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
-
-# define COMMENT_CHAR			'#'
-# define ALT_COMMENT			';'
-# define LABEL_CHAR				':'
-# define DIRECT_CHAR			'%'
-# define SEPARATOR_CHAR			','
-
-# define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"
-
-# define NAME_CMD_STRING		".name"
-# define COMMENT_CMD_STRING		".comment"
-
-# define REG_NUMBER				16
-
-# define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA			50
-# define NBR_LIVE				21
-# define MAX_CHECKS				10
-
-typedef char					t_arg_type;
-
-# define T_REG					1
-# define T_DIR					2
-# define T_IND					4
-# define T_LAB					8
-
-# define PROG_NAME_LENGTH		128
-# define COMMENT_LENGTH			2048
-# define COREWAR_EXEC_MAGIC		0xea83f3
-
-typedef struct					s_l
+typedef enum
 {
-	char						name[256];
-	struct s_l					*next;
-}								t_l;
+	false,
+	true
+}	t_bool;
 
-typedef struct					s_label
+typedef struct	s_op
 {
-	int							is_label;
-	t_l							*names;
-	t_l							*start;
-	int							range_1;
-	int							range_2;
-	int							range_3;
-	char						cmd_name[6];
-	int							cmd_code;
-	int							cmd_type;
-	int							arg_1;
-	int							arg_2;
-	int							arg_3;
-	char						l_name_1[256];
-	char						l_name_2[256];
-	char						l_name_3[256];
-	int							type_1;
-	int							type_2;
-	int							type_3;
-	int							arg_now;
-}								t_label;
+	char		*name;
+	uint8_t		code;
+	uint8_t		args_num;
+	t_bool		args_types_code;
+	uint8_t		args_types[3];
+	uint8_t		t_dir_size;
+}				t_op;
 
-typedef struct					s_champ
-{
-	char						name[PROG_NAME_LENGTH + 1];
-	char						comment[COMMENT_LENGTH + 1];
-	int							code_size;
-	unsigned char				*exec_code;
-	int							ind_wr;
-	int							is_end_comment;
+/*
+** Array
+*/
 
-	int							new_com;
-	int							l_size;
-	t_label						*labels;
-
-	int							len;
-	int							fd;
-}								t_champ;
-
-typedef struct					s_tw
-{
-	int							comma;
-	int							count_arg;
-}								t_tw;
-
-void							if_is_label(t_champ *champ, int count_arg,\
-char *line, int *i);
-void							recording_label(t_champ *champ, int *i,\
-int count_arg, char *line);
-int								skip_everything(char *line);
-void							free_all(t_champ champ);
-int								switch_args(char *line, int count_arg,\
-t_champ *champ);
-void							increase_array(t_champ *champ);
-char							*check_name_com(char *line,\
-t_champ *champ);
-int								is_command(char *line, t_champ *champ);
-void							skip_spaces(int i, char *line);
-int								is_comment(char *line);
-int								is_name(char **line, int fd,\
-t_champ *champ, int name);
-int								is_main_comment(char **line, int fd,\
-t_champ *champ, int mc);
-int								is_command_or_not(char *line,\
-t_champ *champ);
-int								find_lab_aft_cmd(t_champ *champ,\
-char *l_name, int start,\
-int arg);
-int								is_comment(char *line);
-int								is_label(char *line, t_champ *champ);
-void							write_4_byte(t_champ *champ,\
-unsigned int to_write);
-void							write_2_byte(t_champ *champ,\
-unsigned int to_write);
-void							write_1_byte(t_champ *champ,\
-unsigned int to_write);
-void							zero_exec(t_champ *champ, int exec_size);
-void							init_array(t_champ *champ);
-int								get_reg_arg_val(t_champ *champ,\
-char *line, int *i);
-int								char_in_label(char el);
-int								get_dir_ind_arg_val(t_champ *champ,\
-char *line, int *i);
-void							find_label(t_champ *champ);
-void							is_file_valid(char *name, t_champ *champ);
-void							check_type_arg(t_champ *champ);
-char							*change_extension(char *filename,\
-char *old, char *new);
-void							to_bin_code(t_champ *champ, int fd);
-void							finish_fill_label_range(t_champ *champ);
-unsigned char					count_code_type_arg(t_champ *champ, int i);
-int								count_code_size(t_champ *champ);
+static t_op		g_op[16] = {
+	{
+		.name = "live",
+		.code = 0x01,
+		.args_num = 1,
+		.args_types_code = false,
+		.args_types = {T_DIR, 0, 0},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "ld",
+		.code = 0x02,
+		.args_num = 2,
+		.args_types_code = true,
+		.args_types = {T_DIR | T_IND, T_REG, 0},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "st",
+		.code = 0x03,
+		.args_num = 2,
+		.args_types_code = true,
+		.args_types = {T_REG, T_REG | T_IND, 0},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "add",
+		.code = 0x04,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG, T_REG, T_REG},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "sub",
+		.code = 0x05,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG, T_REG, T_REG},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "and",
+		.code = 0x06,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "or",
+		.code = 0x07,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "xor",
+		.code = 0x08,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "zjmp",
+		.code = 0x09,
+		.args_num = 1,
+		.args_types_code = false,
+		.args_types = {T_DIR, 0, 0},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "ldi",
+		.code = 0x0A,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "sti",
+		.code = 0x0B,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "fork",
+		.code = 0x0C,
+		.args_num = 1,
+		.args_types_code = false,
+		.args_types = {T_DIR, 0, 0},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "lld",
+		.code = 0x0D,
+		.args_num = 2,
+		.args_types_code = true,
+		.args_types = {T_DIR | T_IND, T_REG, 0},
+		.t_dir_size = 4,
+	},
+	{
+		.name = "lldi",
+		.code = 0x0E,
+		.args_num = 3,
+		.args_types_code = true,
+		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "lfork",
+		.code = 0x0F,
+		.args_num = 1,
+		.args_types_code = false,
+		.args_types = {T_DIR, 0, 0},
+		.t_dir_size = 2,
+	},
+	{
+		.name = "aff",
+		.code = 0x10,
+		.args_num = 1,
+		.args_types_code = true,
+		.args_types = {T_REG, 0, 0},
+		.t_dir_size = 4,
+	}
+};
 
 #endif

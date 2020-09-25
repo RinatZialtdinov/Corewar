@@ -45,7 +45,7 @@ void	while_in_m_comment(t_champ *champ, char **line, int *i, int *j)
 	int ans;
 
 	if (*j >= COMMENT_LENGTH)
-		free_all(*champ);
+		free_all(*champ, "Error: too long comment\n");
 	else if ((*line)[*i] == '\0')
 	{
 		free(*line);
@@ -56,10 +56,13 @@ void	while_in_m_comment(t_champ *champ, char **line, int *i, int *j)
 			if ((*line)[0] == '\0')
 				champ->comment[(*j)++] = '\n';
 			else
+			{
 				break ;
+			}
+			free(*line);
 		}
 		if (ans <= 0)
-			free_all(*champ);
+			free_all(*champ, "Error: invalid file\n");
 	}
 }
 
@@ -83,12 +86,12 @@ int		is_main_comment(char **line, int fd, t_champ *champ, int mc)
 		return (0);
 	i = len_const;
 	if (mc == 1)
-		free_all(*champ);
+		free_all(*champ, "Error: two main comments\n");
 	while ((*line)[i] != '"' && (*line)[i] != '\0' &&\
 	(*line)[i] != COMMENT_CHAR && (*line)[i] != ALT_COMMENT)
 		i++;
 	if ((*line)[i++] != '"')
-		free_all(*champ);
+		free_all(*champ, "Error: no name or comment\n");
 	champ->fd = fd;
 	while ((*line)[i] != '"')
 	{

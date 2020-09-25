@@ -84,7 +84,7 @@ void	is_lab_in_dir_char(char *line, t_champ *champ, int count_arg, int *i)
 			get_dir_ind_arg_val(champ, line, i);
 	}
 	else
-		free_all(*champ);
+		free_all(*champ, "Error: invalid arg\n");
 }
 
 void	if_is_dir(t_champ *champ, int count_arg, char *line, int *i)

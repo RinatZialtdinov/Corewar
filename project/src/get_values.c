@@ -60,7 +60,7 @@ void	recording_label(t_champ *champ, int *i, int count_arg, char *line)
 	}
 	if (line[(*i)] != ' ' && line[*i] != ',' && line[*i] != '\t' &&\
 	line[*i] != '\0' && line[*i] != COMMENT_CHAR && line[*i] != ALT_COMMENT)
-		free_all(*champ);
+		free_all(*champ, "Error: wrong symbol\n");
 }
 
 void	zero_exec(t_champ *champ, int exec_size)
@@ -79,7 +79,7 @@ int		get_reg_arg_val(t_champ *champ, char *line, int *i)
 		(*i)++;
 	if (ft_atoi(&line[1]) > REG_NUMBER || *i == 1 || ft_atoi(&line[1]) < 1)
 	{
-		free_all(*champ);
+		free_all(*champ, "Error: invalid arg\n");
 	}
 	return (ft_atoi(&line[1]));
 }
@@ -95,7 +95,7 @@ int		get_dir_ind_arg_val(t_champ *champ, char *line, int *i)
 		(*i)++;
 	if (line[*i - 1] == '-' && *i == 1)
 	{
-		free_all(*champ);
+		free_all(*champ, "Error: invalid arg\n");
 	}
 	return (ft_atoi(&line[start]));
 }
